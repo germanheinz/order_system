@@ -1,0 +1,14 @@
+com\order\system\domain\entity\BaseEntity.class
+com\order\system\domain\valueobject\ProductId.class
+com\order\system\domain\entity\AggregateRoot.class
+com\order\system\domain\exception\DomainException.class
+com\order\system\domain\valueobject\OrderStatus.class
+com\order\system\domain\valueobject\CustomerId.class
+com\order\system\domain\event\publisher\DomainEventPublisher.class
+com\order\system\domain\valueobject\OrderApprovalStatus.class
+com\order\system\domain\valueobject\PaymentStatus.class
+com\order\system\domain\event\DomainEvent.class
+com\order\system\domain\valueobject\OrderId.class
+com\order\system\domain\valueobject\BaseId.class
+com\order\system\domain\valueobject\Money.class
+com\order\system\domain\valueobject\RestaurantId.class

@@ -1,0 +1,16 @@
+com\order\system\data\order\entity\OrderItemEntityId.class
+com\order\system\data\order\entity\OrderItemEntityId$OrderItemEntityIdBuilder.class
+com\order\system\data\customer\entity\CustomerEntity.class
+com\order\system\data\order\entity\OrderEntity.class
+com\order\system\data\order\entity\OrderAddressEntity.class
+com\order\system\data\order\repository\OrderJpaRepository.class
+com\order\system\data\customer\repository\CustomerJpaRepository.class
+com\order\system\data\customer\entity\CustomerEntity$CustomerEntityBuilder.class
+com\order\system\data\customer\mapper\CustomerDataAccessMapper.class
+com\order\system\data\order\entity\OrderItemEntity$OrderItemEntityBuilder.class
+com\order\system\data\order\entity\OrderEntity$OrderEntityBuilder.class
+com\order\system\data\order\mapper\OrderDataAccessMapper.class
+com\order\system\data\order\entity\OrderAddressEntity$OrderAddressEntityBuilder.class
+com\order\system\data\customer\adapter\CustomerRepositoryImpl.class
+com\order\system\data\order\adapter\OrderRepositoryImpl.class
+com\order\system\data\order\entity\OrderItemEntity.class
