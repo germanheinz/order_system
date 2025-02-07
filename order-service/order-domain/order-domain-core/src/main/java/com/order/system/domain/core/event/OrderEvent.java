@@ -5,8 +5,7 @@ import com.order.system.domain.core.entity.Order;
 
 import java.time.ZonedDateTime;
 
-public class OrderEvent implements DomainEvent<Order> {
-
+public abstract class OrderEvent implements DomainEvent<Order> {
     private final Order order;
     private final ZonedDateTime createdAt;
 

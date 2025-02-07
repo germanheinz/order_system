@@ -1,0 +1,36 @@
+# Ignorar binarios y archivos compilados
+*.class
+*.jar
+*.war
+*.ear
+
+# Directorios de compilación
+/target/
+/bin/
+/build/
+
+target/
+**/target/
+
+# Archivos de configuración del IDE (IntelliJ, Eclipse, VS Code)
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+
+# Dependencias descargadas por Maven
+.m2/
+
+# Logs y archivos de depuración
+*.log
+hs_err_pid*
+
+order-infrastructure/docker-compose/volumes/
+order-infrastructure/docker-compose/zookeeper-data/
+
+
+# Configuración del sistema operativo
+.DS_Store
+Thumbs.db

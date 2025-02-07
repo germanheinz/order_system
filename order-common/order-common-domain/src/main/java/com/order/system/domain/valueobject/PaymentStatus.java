@@ -1,5 +1,5 @@
 package com.order.system.domain.valueobject;
 
 public enum PaymentStatus {
-    COMPLETED, CANCELLED, FAILLED
+    COMPLETED, CANCELLED, FAILED
 }

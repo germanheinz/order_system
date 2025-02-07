@@ -1,5 +1,6 @@
 package com.order.system.data.order.entity;
 
+
 import lombok.*;
 
 import java.io.Serializable;

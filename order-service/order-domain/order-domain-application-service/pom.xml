@@ -13,8 +13,6 @@
 
     <artifactId>order-domain-application-service</artifactId>
 
-    <properties>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.order.system</groupId>

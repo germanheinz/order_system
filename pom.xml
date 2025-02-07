@@ -11,6 +11,7 @@
         <module>order-common</module>
         <module>order-infrastructure</module>
         <module>order-service</module>
+        <module>payment-service</module>
     </modules>
 
     <parent>
@@ -33,6 +34,11 @@
         <dependencies>
             <dependency>
                 <groupId>com.order.system</groupId>
+                <artifactId>order-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
                 <artifactId>order-domain-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -44,11 +50,6 @@
             <dependency>
                 <groupId>com.order.system</groupId>
                 <artifactId>order-data</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.order.system</groupId>
-                <artifactId>order-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -69,7 +70,47 @@
             <dependency>
                 <groupId>com.order.system</groupId>
                 <artifactId>order-common-application</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>payment-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>payment-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>payment-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>payment-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>kafka-producer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>kafka-consumer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>kafka-config-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>kafka-model</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
