@@ -27,7 +27,7 @@ target/
 *.log
 hs_err_pid*
 
-order-infrastructure/docker-compose/volumes/
+order-infrastructure/docker-compose/volume_order/
 order-infrastructure/docker-compose/zookeeper-data/
 
 
