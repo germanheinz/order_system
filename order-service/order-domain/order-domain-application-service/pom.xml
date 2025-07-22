@@ -20,6 +20,10 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.order.system</groupId>
+            <artifactId>saga</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>

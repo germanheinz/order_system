@@ -4,7 +4,7 @@ import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.OrderId;
 import com.order.system.payment.service.domain.dto.PaymentRequest;
-import com.order.system.payment.service.domain.entity.Payment;
+import com.order.system.notification.service.domain.entity.Payment;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

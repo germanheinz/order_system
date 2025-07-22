@@ -6,8 +6,7 @@ import com.order.system.domain.event.publisher.DomainEventPublisher;
 
 import java.time.ZonedDateTime;
 
-public class OrderCancelledEvent extends OrderEvent {
-
+public class OrderCancelledEvent extends OrderEvent{
     private final DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher;
 
     public OrderCancelledEvent(Order order,

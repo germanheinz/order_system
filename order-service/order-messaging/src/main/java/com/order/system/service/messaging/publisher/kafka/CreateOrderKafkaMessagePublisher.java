@@ -1,12 +1,12 @@
-package com.food.ordering.system.order.service.messaging.publisher.kafka;
+package com.order.system.service.messaging.publisher.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
-import com.food.ordering.system.kafka.producer.KafkaMessageHelper;
-import com.food.ordering.system.kafka.producer.service.KafkaProducer;
-import com.food.ordering.system.order.service.domain.config.OrderServiceConfigData;
-import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
-import com.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
-import com.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
+import com.order.system.application.service.config.OrderServiceConfigData;
+import com.order.system.application.service.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
+import com.order.system.domain.core.event.OrderCreatedEvent;
+import com.order.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.order.system.kafka.producer.KafkaMessageHelper;
+import com.order.system.kafka.producer.service.KafkaProducer;
+import com.order.system.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

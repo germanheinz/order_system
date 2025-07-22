@@ -1,17 +1,17 @@
-package com.food.ordering.system.order.service.messaging.publisher.kafka;
+package com.order.system.service.messaging.publisher.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
-import com.food.ordering.system.kafka.producer.KafkaMessageHelper;
-import com.food.ordering.system.kafka.producer.service.KafkaProducer;
-import com.food.ordering.system.order.service.domain.config.OrderServiceConfigData;
-import com.food.ordering.system.order.service.domain.event.OrderPaidEvent;
-import com.food.ordering.system.order.service.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
-import com.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
+import com.order.system.application.service.config.OrderServiceConfigData;
+import com.order.system.application.service.ports.output.message.publisher.payment.OrderPaidRestaurantRequestMessagePublisher;
+import com.order.system.domain.core.event.OrderPaidEvent;
+import com.order.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import com.order.system.kafka.producer.KafkaMessageHelper;
+import com.order.system.kafka.producer.service.KafkaProducer;
+import com.order.system.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+@Component("payOrderKafkaMessagePublisher")
 public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequestMessagePublisher {
 
     private final OrderMessagingDataMapper orderMessagingDataMapper;

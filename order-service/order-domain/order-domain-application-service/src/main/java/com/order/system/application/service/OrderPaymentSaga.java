@@ -1,17 +1,17 @@
-package com.order.system.domain.service;
+package com.order.system.application.service;
 
-import com.order.system.domain.core.entity.Order;
-
+import com.order.system.application.service.dto.message.PaymentResponse;
+import com.order.system.application.service.ports.output.message.publisher.payment.OrderPaidRestaurantRequestMessagePublisher;
+import com.order.system.application.service.ports.output.repository.OrderRepository;
 import com.order.system.config.kafka.SagaStep;
 import com.order.system.domain.core.OrderDomainService;
+import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.event.OrderPaidEvent;
 import com.order.system.domain.core.exception.OrderNotFoundException;
 import com.order.system.domain.event.EmptyEvent;
-import com.order.system.domain.service.dto.message.PaymentResponse;
-import com.order.system.domain.service.ports.ouput.message.publisher.payment.OrderPaidRestaurantRequestMessagePublisher;
-import com.order.system.domain.service.ports.ouput.repository.OrderRepository;
 import com.order.system.domain.valueobject.OrderId;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +28,9 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse, com.order.sys
 
     public OrderPaymentSaga(OrderDomainService orderDomainService,
                             OrderRepository orderRepository,
-                            OrderPaidRestaurantRequestMessagePublisher orderPaidRestaurantRequestMessagePublisher) {
+                            @Qualifier("payOrderKafkaMessagePublisher")
+                            OrderPaidRestaurantRequestMessagePublisher orderPaidRestaurantRequestMessagePublisher
+                            ) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.orderPaidRestaurantRequestMessagePublisher = orderPaidRestaurantRequestMessagePublisher;
@@ -39,6 +41,7 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse, com.order.sys
     public OrderPaidEvent process(PaymentResponse paymentResponse) {
         log.info("Completing payment for order with id: {}", paymentResponse.getOrderId());
         Order order = findOrder(paymentResponse.getOrderId());
+        // TODO FIX
         OrderPaidEvent domainEvent = orderDomainService.payOrder(order, orderPaidRestaurantRequestMessagePublisher);
         orderRepository.save(order);
         log.info("Order with id: {} is paid", order.getId().getValue());

@@ -1,7 +1,7 @@
 package com.order.system.payment.service.domain;
 
 import com.order.system.payment.service.domain.dto.PaymentRequest;
-import com.order.system.payment.service.domain.event.PaymentEvent;
+import com.order.system.notification.service.domain.event.PaymentEvent;
 import com.order.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageListener {
 
-    private final PaymentRequestHelper paymentRequestHelper;
+    public static final String UTC = "UTC";
 
-    public PaymentRequestMessageListenerImpl(PaymentRequestHelper paymentRequestHelper) {
+    private final com.order.system.payment.service.domain.PaymentRequestHelper paymentRequestHelper;
+
+    public PaymentRequestMessageListenerImpl(com.order.system.payment.service.domain.PaymentRequestHelper paymentRequestHelper) {
         this.paymentRequestHelper = paymentRequestHelper;
     }
 

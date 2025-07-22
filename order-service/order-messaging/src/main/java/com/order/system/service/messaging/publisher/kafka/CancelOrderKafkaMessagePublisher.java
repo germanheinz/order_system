@@ -1,19 +1,19 @@
-package com.food.ordering.system.order.service.messaging.publisher.kafka;
+package com.order.system.service.messaging.publisher.kafka;
 
-
-import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
-import com.food.ordering.system.kafka.producer.KafkaMessageHelper;
-import com.food.ordering.system.kafka.producer.service.KafkaProducer;
-import com.food.ordering.system.order.service.domain.config.OrderServiceConfigData;
-import com.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
-import com.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCancelledPaymentRequestMessagePublisher;
-import com.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
+import com.order.system.application.service.OrderCreateHelper;
+import com.order.system.application.service.config.OrderServiceConfigData;
+import com.order.system.application.service.ports.output.message.publisher.payment.OrderCancelPaymentRequestMessagePublisher;
+import com.order.system.domain.core.event.OrderCancelledEvent;
+import com.order.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.order.system.kafka.producer.KafkaMessageHelper;
+import com.order.system.kafka.producer.service.KafkaProducer;
+import com.order.system.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CancelOrderKafkaMessagePublisher implements OrderCancelledPaymentRequestMessagePublisher {
+public class CancelOrderKafkaMessagePublisher implements OrderCancelPaymentRequestMessagePublisher {
 
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
@@ -32,26 +32,24 @@ public class CancelOrderKafkaMessagePublisher implements OrderCancelledPaymentRe
 
     @Override
     public void publish(OrderCancelledEvent domainEvent) {
-        String orderId = domainEvent.getOrder().getId().getValue().toString();
-        log.info("Received OrderCancelledEvent for order id: {}", orderId);
+
+        String orderId = domainEvent.getOrder().getId().toString();
+        log.info("Receiving orderCancelEvent for order id: {}", orderId);
 
         try {
-            PaymentRequestAvroModel paymentRequestAvroModel = orderMessagingDataMapper
-                    .orderCancelledEventToPaymentRequestAvroModel(domainEvent);
+            PaymentRequestAvroModel paymentRequestAvroModel = orderMessagingDataMapper.orderCancelledEventToPaymentRequestAvroModel(domainEvent);
 
             kafkaProducer.send(orderServiceConfigData.getPaymentRequestTopicName(),
                     orderId,
                     paymentRequestAvroModel,
-                    orderKafkaMessageHelper
-                            .getKafkaCallback(orderServiceConfigData.getPaymentResponseTopicName(),
-                                    paymentRequestAvroModel,
-                                    orderId,
-                                    "PaymentRequestAvroModel"));
+                    orderKafkaMessageHelper.getKafkaCallback(
+                            orderServiceConfigData.getPaymentRequestTopicName(),
+                            paymentRequestAvroModel, orderId, "paymentRequestAvroModel"));
 
-            log.info("PaymentRequestAvroModel sent to Kafka for order id: {}", paymentRequestAvroModel.getOrderId());
-        } catch (Exception e) {
-            log.error("Error while sending PaymentRequestAvroModel message" +
-                    " to kafka with order id: {}, error: {}", orderId, e.getMessage());
+            log.info("PaymentRequestAvroModel sent to Kafka for Order id: {}", paymentRequestAvroModel.getOrderId());
+        }catch (Exception e){
+            log.info("e", e);
         }
     }
+
 }

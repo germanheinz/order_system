@@ -51,7 +51,8 @@ kafka-consumer-config:
   value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
   payment-consumer-group-id: payment-topic-consumer
   restaurant-approval-consumer-group-id: restaurant-approval-topic-consumer
-  auto-offset-reset: earliest
+  auto-offset-reset: latest
+
   specific-avro-reader-key: specific.avro.reader
   specific-avro-reader: true
   batch-listener: true

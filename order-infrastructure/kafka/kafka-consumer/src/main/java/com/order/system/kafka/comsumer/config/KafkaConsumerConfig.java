@@ -1,7 +1,8 @@
-package com.food.ordering.system.kafka.consumer.config;
+package com.order.system.kafka.comsumer.config;
 
-import com.food.ordering.system.kafka.config.data.KafkaConfigData;
-import com.food.ordering.system.kafka.config.data.KafkaConsumerConfigData;
+
+import com.order.system.config.kafka.KafkaConfigData;
+import com.order.system.config.kafka.KafkaConsumerConfigData;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.context.annotation.Bean;

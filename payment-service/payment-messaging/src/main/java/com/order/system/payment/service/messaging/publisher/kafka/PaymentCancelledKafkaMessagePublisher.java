@@ -3,12 +3,12 @@ package com.order.system.payment.service.messaging.publisher.kafka;
 import com.order.system.kafka.order.avro.model.PaymentResponseAvroModel;
 
 import com.order.system.kafka.producer.KafkaMessageHelper;
+import com.order.system.kafka.producer.service.KafkaProducer;
 import com.order.system.payment.service.domain.config.PaymentServiceConfigData;
-import com.order.system.payment.service.domain.event.PaymentCancelledEvent;
+import com.order.system.notification.service.domain.event.PaymentCancelledEvent;
 import com.order.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
 import com.order.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -40,13 +40,13 @@ public class PaymentCancelledKafkaMessagePublisher implements PaymentCancelledMe
             PaymentResponseAvroModel paymentResponseAvroModel =
                     paymentMessagingDataMapper.paymentCancelledEventToPaymentResponseAvroModel(domainEvent);
 
-//            kafkaProducer.send(paymentServiceConfigData.getPaymentResponseTopicName(),
-//                    orderId,
-//                    paymentResponseAvroModel,
-//                    kafkaMessageHelper.getKafkaCallback(paymentServiceConfigData.getPaymentResponseTopicName(),
-//                            paymentResponseAvroModel,
-//                            orderId,
-//                            "PaymentResponseAvroModel"));
+            kafkaProducer.send(paymentServiceConfigData.getPaymentResponseTopicName(),
+                    orderId,
+                    paymentResponseAvroModel,
+                    kafkaMessageHelper.getKafkaCallback(paymentServiceConfigData.getPaymentResponseTopicName(),
+                            paymentResponseAvroModel,
+                            orderId,
+                            "PaymentResponseAvroModel"));
 
             log.info("PaymentResponseAvroModel sent to kafka for order id: {}", orderId);
         } catch (Exception e) {

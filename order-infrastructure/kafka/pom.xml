@@ -10,10 +10,10 @@
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>kafka-producer</module>
         <module>kafka-config-data</module>
         <module>kafka-consumer</module>
         <module>kafka-model</module>
+        <module>kafka-producer</module>
     </modules>
     <repositories>
         <repository>
@@ -27,7 +27,7 @@
             <dependency>
                 <groupId>org.springframework.kafka</groupId>
                 <artifactId>spring-kafka</artifactId>
-                <version>${spring-kafka.version}</version>
+                <version>3.3.2</version>
             </dependency>
             <dependency>
                 <groupId>io.confluent</groupId>

@@ -5,13 +5,10 @@
 *.ear
 
 # Directorios de compilación
-/target/
 /bin/
 /build/
 
-target/
 **/target/
-
 # Archivos de configuración del IDE (IntelliJ, Eclipse, VS Code)
 .idea/
 *.iml
@@ -28,7 +25,10 @@ target/
 hs_err_pid*
 
 order-infrastructure/docker-compose/volume_order/
+order-infrastructure/docker-compose/volume_order_data/
+order-infrastructure/docker-compose/.backup/
 order-infrastructure/docker-compose/zookeeper-data/
+order-infrastructure/docker-compose/
 
 
 # Configuración del sistema operativo

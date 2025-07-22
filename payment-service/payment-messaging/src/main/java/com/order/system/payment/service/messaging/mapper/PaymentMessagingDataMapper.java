@@ -5,9 +5,9 @@ import com.order.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.order.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.order.system.kafka.order.avro.model.PaymentStatus;
 import com.order.system.payment.service.domain.dto.PaymentRequest;
-import com.order.system.payment.service.domain.event.PaymentCancelledEvent;
-import com.order.system.payment.service.domain.event.PaymentCompletedEvent;
-import com.order.system.payment.service.domain.event.PaymentFailedEvent;
+import com.order.system.notification.service.domain.event.PaymentCancelledEvent;
+import com.order.system.notification.service.domain.event.PaymentCompletedEvent;
+import com.order.system.notification.service.domain.event.PaymentFailedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

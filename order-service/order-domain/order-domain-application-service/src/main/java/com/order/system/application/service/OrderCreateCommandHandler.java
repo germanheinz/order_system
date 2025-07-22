@@ -16,21 +16,21 @@ public class OrderCreateCommandHandler {
 
     private final OrderDataMapper orderDataMapper;
 
-//    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
+    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
 
     public OrderCreateCommandHandler(OrderCreateHelper orderCreateHelper,
-                                     OrderDataMapper orderDataMapper
-//                                     OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher
+                                     OrderDataMapper orderDataMapper,
+                                     OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher
     ) {
         this.orderCreateHelper = orderCreateHelper;
         this.orderDataMapper = orderDataMapper;
-//        this.orderCreatedPaymentRequestMessagePublisher = orderCreatedPaymentRequestMessagePublisher;
+        this.orderCreatedPaymentRequestMessagePublisher = orderCreatedPaymentRequestMessagePublisher;
     }
 
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         OrderCreatedEvent orderCreatedEvent = orderCreateHelper.persistOrder(createOrderCommand);
         log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
-//        orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
+        orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
         return orderDataMapper.orderToCreateOrderResponse(orderCreatedEvent.getOrder(),
                 "Order created successfully");
     }
