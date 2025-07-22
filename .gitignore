@@ -7,6 +7,8 @@
 # Directorios de compilación
 /bin/
 /build/
+**/archetype-resources
+**/META-INF
 
 **/target/
 # Archivos de configuración del IDE (IntelliJ, Eclipse, VS Code)
