@@ -1,4 +1,4 @@
-package com.order.system.stock.service.domain;
+package com.order.system.payment.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
