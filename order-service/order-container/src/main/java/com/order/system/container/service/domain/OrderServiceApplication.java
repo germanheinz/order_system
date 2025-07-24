@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
                                         "com.order.system.data.customer.repository",
                                         "com.order.system.data.order.adapter"})
 @EntityScan(basePackages = { "com.order.system.domain",
-                             "com.order.system.data" })
+                             "com.order.system.data","com.order.system"})
 @SpringBootApplication(scanBasePackages = {"com.order.system","com.order.system.payment.service.domain","com.order.system.application.service"})
 public class OrderServiceApplication {
     public static void main(String[] args){

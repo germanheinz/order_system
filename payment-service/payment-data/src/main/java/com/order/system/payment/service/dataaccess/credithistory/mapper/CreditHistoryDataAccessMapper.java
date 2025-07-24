@@ -3,8 +3,8 @@ package com.order.system.payment.service.dataaccess.credithistory.mapper;
 import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
-import com.order.system.notification.service.domain.entity.CreditHistory;
-import com.order.system.notification.service.domain.valueobject.CreditHistoryId;
+import com.order.system.stock.service.domain.entity.CreditHistory;
+import com.order.system.stock.service.domain.valueobject.CreditHistoryId;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -3,7 +3,7 @@ package com.order.system.payment.service.dataaccess.creditentry.adapter;
 import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.payment.service.dataaccess.creditentry.mapper.CreditEntryDataAccessMapper;
 import com.order.system.payment.service.dataaccess.creditentry.repository.CreditEntryJpaRepository;
-import com.order.system.notification.service.domain.entity.CreditEntry;
+import com.order.system.stock.service.domain.entity.CreditEntry;
 import com.order.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import org.springframework.stereotype.Component;
 

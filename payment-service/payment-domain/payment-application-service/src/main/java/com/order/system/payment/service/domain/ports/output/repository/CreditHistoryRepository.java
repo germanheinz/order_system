@@ -1,7 +1,7 @@
 package com.order.system.payment.service.domain.ports.output.repository;
 
 import com.order.system.domain.valueobject.CustomerId;
-import com.order.system.notification.service.domain.entity.CreditHistory;
+import com.order.system.stock.service.domain.entity.CreditHistory;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,7 +3,9 @@ package com.order.system.application.service;
 import com.order.system.application.service.dto.create.CreateOrderCommand;
 import com.order.system.application.service.mapper.OrderDataMapper;
 import com.order.system.application.service.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
+import com.order.system.application.service.ports.output.repository.CustomerRepository;
 import com.order.system.application.service.ports.output.repository.OrderRepository;
+import com.order.system.application.service.ports.output.repository.RestaurantRepository;
 import com.order.system.domain.core.OrderDomainService;
 import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.entity.Product;
@@ -30,9 +32,9 @@ public class OrderCreateHelper {
 
     private final OrderRepository orderRepository;
 
-//    private final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-//    private final RestaurantRepository restaurantRepository;
+    private final RestaurantRepository restaurantRepository;
 
     private final OrderDataMapper orderDataMapper;
 
@@ -42,15 +44,15 @@ public class OrderCreateHelper {
                              OrderDomainService orderDomainService,
                              OrderRepository orderRepository,
                              OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher,
-//                             RestaurantRepository restaurantRepository,
-//                             CustomerRepository customerRepository,
+                             RestaurantRepository restaurantRepository,
+                             CustomerRepository customerRepository,
                              OrderDataMapper orderDataMapper
     ) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.orderCreatedEventDomainEventPublisher = orderCreatedEventDomainEventPublisher;
-//        this.customerRepository = customerRepository;
-//        this.restaurantRepository = restaurantRepository;
+        this.customerRepository = customerRepository;
+        this.restaurantRepository = restaurantRepository;
         this.orderDataMapper = orderDataMapper;
     }
 

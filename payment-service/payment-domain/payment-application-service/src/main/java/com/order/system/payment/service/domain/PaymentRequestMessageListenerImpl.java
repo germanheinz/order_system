@@ -1,7 +1,7 @@
 package com.order.system.payment.service.domain;
 
 import com.order.system.payment.service.domain.dto.PaymentRequest;
-import com.order.system.notification.service.domain.event.PaymentEvent;
+import com.order.system.stock.service.domain.event.PaymentEvent;
 import com.order.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

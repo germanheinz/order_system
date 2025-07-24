@@ -2,7 +2,7 @@ package com.order.system.payment.service.dataaccess.payment.adapter;
 
 import com.order.system.payment.service.dataaccess.payment.mapper.PaymentDataAccessMapper;
 import com.order.system.payment.service.dataaccess.payment.repository.PaymentJpaRepository;
-import com.order.system.notification.service.domain.entity.Payment;
+import com.order.system.stock.service.domain.entity.Payment;
 import com.order.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 

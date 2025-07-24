@@ -4,8 +4,8 @@ import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.OrderId;
 import com.order.system.payment.service.dataaccess.payment.entity.PaymentEntity;
-import com.order.system.notification.service.domain.entity.Payment;
-import com.order.system.notification.service.domain.valueobject.PaymentId;
+import com.order.system.stock.service.domain.entity.Payment;
+import com.order.system.stock.service.domain.valueobject.PaymentId;
 import org.springframework.stereotype.Component;
 
 @Component

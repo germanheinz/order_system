@@ -1,6 +1,6 @@
 package com.order.system.payment.service.dataaccess.credithistory.entity;
 
-import com.order.system.notification.service.domain.valueobject.TransactionType;
+import com.order.system.stock.service.domain.valueobject.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 

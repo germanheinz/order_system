@@ -4,7 +4,7 @@ import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
 import com.order.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataAccessMapper;
 import com.order.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
-import com.order.system.notification.service.domain.entity.CreditHistory;
+import com.order.system.stock.service.domain.entity.CreditHistory;
 import com.order.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import org.springframework.stereotype.Component;
 

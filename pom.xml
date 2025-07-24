@@ -12,7 +12,8 @@
         <module>order-infrastructure</module>
         <module>order-service</module>
         <module>payment-service</module>
-        <module>notification-service</module>
+        <module>stock-service</module>
+        <module>common</module>
     </modules>
 
     <parent>
@@ -33,6 +34,21 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>common-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>common-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.order.system</groupId>
+                <artifactId>common-dataaccess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.order.system</groupId>
                 <artifactId>order-application</artifactId>
@@ -100,22 +116,22 @@
             </dependency>
             <dependency>
                 <groupId>com.order.system</groupId>
-                <artifactId>notification-data</artifactId>
+                <artifactId>stock-data</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.order.system</groupId>
-                <artifactId>notification-domain-core</artifactId>
+                <artifactId>stock-domain-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.order.system</groupId>
-                <artifactId>notification-domain-application-service</artifactId>
+                <artifactId>stock-domain-application-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.order.system</groupId>
-                <artifactId>notification-messaging</artifactId>
+                <artifactId>stock-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

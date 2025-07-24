@@ -1,11 +1,11 @@
 package com.order.system.payment.service.domain;
 
-import com.order.system.notification.service.domain.PaymentDomainService;
+import com.order.system.stock.service.domain.PaymentDomainService;
 import com.order.system.payment.service.domain.dto.PaymentRequest;
-import com.order.system.notification.service.domain.entity.CreditEntry;
-import com.order.system.notification.service.domain.entity.CreditHistory;
-import com.order.system.notification.service.domain.entity.Payment;
-import com.order.system.notification.service.domain.event.PaymentEvent;
+import com.order.system.stock.service.domain.entity.CreditEntry;
+import com.order.system.stock.service.domain.entity.CreditHistory;
+import com.order.system.stock.service.domain.entity.Payment;
+import com.order.system.stock.service.domain.event.PaymentEvent;
 import com.order.system.payment.service.domain.exception.PaymentApplicationServiceException;
 import com.order.system.payment.service.domain.mapper.PaymentDataMapper;
 import com.order.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;

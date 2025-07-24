@@ -34,6 +34,11 @@
             <groupId>com.order.system</groupId>
             <artifactId>order-domain-application-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.order.system</groupId>
+            <artifactId>common-dataaccess</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
