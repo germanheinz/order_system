@@ -16,17 +16,17 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(RestaurantEntityId.class)
-@Table(name = "order_restaurant_m_view", schema = "restaurant")
+@IdClass(StockEntityId.class)
+@Table(name = "order_stock_m_view", schema = "stock")
 @Entity
-public class RestaurantEntity {
+public class StockEntity {
 
     @Id
-    private UUID restaurantId;
+    private UUID stockId;
     @Id
     private UUID productId;
-    private String restaurantName;
-    private Boolean restaurantActive;
+    private String stockName;
+    private Boolean stockActive;
     private String productName;
     private BigDecimal productPrice;
     private Boolean productAvailable;
@@ -35,12 +35,12 @@ public class RestaurantEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RestaurantEntity that = (RestaurantEntity) o;
-        return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
+        StockEntity that = (StockEntity) o;
+        return stockId.equals(that.stockId) && productId.equals(that.productId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(restaurantId, productId);
+        return Objects.hash(stockId, productId);
     }
 }

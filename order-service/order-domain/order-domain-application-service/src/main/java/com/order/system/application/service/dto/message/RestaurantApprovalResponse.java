@@ -15,7 +15,7 @@ public class RestaurantApprovalResponse {
     private String id;
     private String sagaId;
     private String orderId;
-    private String restaurantId;
+    private String stockId;
     private Instant createdAt;
     private OrderApprovalStatus orderApprovalStatus;
     private List<String> failureMessages;

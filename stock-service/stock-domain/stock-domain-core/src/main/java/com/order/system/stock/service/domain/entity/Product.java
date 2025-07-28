@@ -1,6 +1,5 @@
 package com.order.system.stock.service.domain.entity;
 
-
 import com.order.system.domain.entity.BaseEntity;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.ProductId;
@@ -85,3 +84,4 @@ public class Product extends BaseEntity<ProductId> {
         }
     }
 }
+

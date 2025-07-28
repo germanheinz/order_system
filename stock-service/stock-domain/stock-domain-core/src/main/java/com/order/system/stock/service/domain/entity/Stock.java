@@ -6,12 +6,12 @@ import com.order.system.domain.entity.AggregateRoot;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.OrderApprovalStatus;
 import com.order.system.domain.valueobject.OrderStatus;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 
 import java.util.List;
 import java.util.UUID;
 
-public class Restaurant extends AggregateRoot<RestaurantId> {
+public class Stock extends AggregateRoot<StockId> {
    private OrderApproval orderApproval;
    private boolean active;
    private final OrderDetail orderDetail;
@@ -36,7 +36,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
    public void constructOrderApproval(OrderApprovalStatus orderApprovalStatus) {
        this.orderApproval = OrderApproval.builder()
                .orderApprovalId(new OrderApprovalId(UUID.randomUUID()))
-               .restaurantId(this.getId())
+               .stockId(this.getId())
                .orderId(this.getOrderDetail().getId())
                .approvalStatus(orderApprovalStatus)
                .build();
@@ -46,8 +46,8 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
         this.active = active;
     }
 
-    private Restaurant(Builder builder) {
-        setId(builder.restaurantId);
+    private Stock(Builder builder) {
+        setId(builder.stockId);
         orderApproval = builder.orderApproval;
         active = builder.active;
         orderDetail = builder.orderDetail;
@@ -70,7 +70,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
     }
 
     public static final class Builder {
-        private RestaurantId restaurantId;
+        private StockId stockId;
         private OrderApproval orderApproval;
         private boolean active;
         private OrderDetail orderDetail;
@@ -78,8 +78,8 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
         private Builder() {
         }
 
-        public Builder restaurantId(RestaurantId val) {
-            restaurantId = val;
+        public Builder stockId(StockId val) {
+            stockId = val;
             return this;
         }
 
@@ -98,8 +98,8 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
             return this;
         }
 
-        public Restaurant build() {
-            return new Restaurant(this);
+        public Stock build() {
+            return new Stock(this);
         }
     }
 }

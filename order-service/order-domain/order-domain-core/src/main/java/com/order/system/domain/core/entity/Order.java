@@ -6,15 +6,12 @@ import com.order.system.domain.core.exception.OrderDomainException;
 import com.order.system.domain.core.valueobject.OrderItemId;
 import com.order.system.domain.core.valueobject.StreetAddress;
 import com.order.system.domain.core.valueobject.TrackingId;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
 public class Order extends AggregateRoot<OrderId> {
     private final CustomerId customerId;
-    private final RestaurantId restaurantId;
+    private final StockId stockId;
     private final StreetAddress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
@@ -118,7 +115,7 @@ public class Order extends AggregateRoot<OrderId> {
     private Order(Builder builder) {
         super.setId(builder.orderId);
         customerId = builder.customerId;
-        restaurantId = builder.restaurantId;
+        stockId = builder.stockId;
         deliveryAddress = builder.deliveryAddress;
         price = builder.price;
         items = builder.items;
@@ -135,8 +132,8 @@ public class Order extends AggregateRoot<OrderId> {
         return customerId;
     }
 
-    public RestaurantId getRestaurantId() {
-        return restaurantId;
+    public StockId getStockId() {
+        return stockId;
     }
 
     public StreetAddress getDeliveryAddress() {
@@ -166,7 +163,7 @@ public class Order extends AggregateRoot<OrderId> {
     public static final class Builder {
         private OrderId orderId;
         private CustomerId customerId;
-        private RestaurantId restaurantId;
+        private StockId stockId;
         private StreetAddress deliveryAddress;
         private Money price;
         private List<OrderItem> items;
@@ -187,8 +184,8 @@ public class Order extends AggregateRoot<OrderId> {
             return this;
         }
 
-        public Builder restaurantId(RestaurantId val) {
-            restaurantId = val;
+        public Builder stockId(StockId val) {
+            stockId = val;
             return this;
         }
 

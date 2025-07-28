@@ -12,7 +12,7 @@ import lombok.Getter;
 public class RestaurantApprovalRequest {
     private String id;
     private String sagaId;
-    private String restaurantId;
+    private String stockId;
     private String orderId;
     private RestaurantOrderStatus restaurantOrderStatus;
     private java.util.List<Product> products;

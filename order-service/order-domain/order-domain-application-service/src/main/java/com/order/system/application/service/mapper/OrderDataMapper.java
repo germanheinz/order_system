@@ -8,15 +8,14 @@ import com.order.system.application.service.dto.track.TrackOrderResponse;
 import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.entity.OrderItem;
 import com.order.system.domain.core.entity.Product;
-import com.order.system.domain.core.entity.Restaurant;
+import com.order.system.domain.core.entity.Stock;
 import com.order.system.domain.core.valueobject.StreetAddress;
 import com.order.system.domain.valueobject.CustomerId;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.ProductId;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -24,9 +23,9 @@ import java.util.stream.Collectors;
 @Component
 public class OrderDataMapper {
 
-    public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
-        return Restaurant.builder()
-                .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
+    public Stock createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand) {
+        return Stock.builder()
+                .stockId(new StockId(createOrderCommand.getStockId()))
                 .products(createOrderCommand.getItems().stream().map(orderItem ->
                         new Product(new ProductId(orderItem.getProductId())))
                         .collect(Collectors.toList()))
@@ -36,7 +35,7 @@ public class OrderDataMapper {
     public Order createOrderCommandToOrder(CreateOrderCommand createOrderCommand) {
         return Order.builder()
                 .customerId(new CustomerId(createOrderCommand.getCustomerId()))
-                .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
+                .stockId(new StockId(createOrderCommand.getStockId()))
                 .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
                 .price(new Money(createOrderCommand.getPrice()))
                 .items(orderItemsToOrderItemEntities(createOrderCommand.getItems()))

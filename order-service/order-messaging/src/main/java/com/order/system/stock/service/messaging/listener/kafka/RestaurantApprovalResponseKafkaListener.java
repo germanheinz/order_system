@@ -1,10 +1,10 @@
-//package com.order.system.service.messaging.listener.kafka;
+//package com.order.system.stock.service.messaging.listener.kafka;
 //
 //import com.order.system.application.service.ports.input.message.listener.payment.NotifiacionResponseMessageListener;
 //import com.order.system.kafka.comsumer.KafkaConsumer;
 //import com.order.system.kafka.order.avro.model.OrderApprovalStatus;
 //import com.order.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
-//import com.order.system.service.messaging.mapper.OrderMessagingDataMapper;
+//import com.order.system.stock.service.messaging.mapper.OrderMessagingDataMapper;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.kafka.annotation.KafkaListener;
 //import org.springframework.messaging.handler.annotation.Header;
@@ -49,15 +49,15 @@
 //            if (OrderApprovalStatus.APPROVED == restaurantApprovalResponseAvroModel.getOrderApprovalStatus()) {
 //                log.info("Processing approved order for order id: {}",
 //                        restaurantApprovalResponseAvroModel.getOrderId());
-//                notifiacionResponseMessageListener.notifiactionSent(orderMessagingDataMapper
-//                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
+////                notifiacionResponseMessageListener.notifiactionSent(orderMessagingDataMapper
+////                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
 //            } else if (OrderApprovalStatus.REJECTED == restaurantApprovalResponseAvroModel.getOrderApprovalStatus()) {
 //                log.info("Processing rejected order for order id: {}, with failure messages: {}",
 //                        restaurantApprovalResponseAvroModel.getOrderId(),
 //                        String.join(FAILURE_MESSAGE_DELIMITER,
 //                                restaurantApprovalResponseAvroModel.getFailureMessages()));
-//                notifiacionResponseMessageListener.notificationFailed(orderMessagingDataMapper
-//                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
+////                notifiacionResponseMessageListener.notificationFailed(orderMessagingDataMapper
+////                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
 //            }
 //        });
 //

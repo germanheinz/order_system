@@ -2,8 +2,8 @@ package com.order.system.domain.valueobject;
 
 import java.util.UUID;
 
-public class RestaurantId extends BaseId<UUID> {
-    public RestaurantId(UUID value) {
+public class StockId extends BaseId<UUID> {
+    public StockId(UUID value) {
         super(value);
     }
 }

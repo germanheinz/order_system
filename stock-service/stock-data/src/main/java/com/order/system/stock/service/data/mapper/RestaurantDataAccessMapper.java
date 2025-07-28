@@ -1,16 +1,16 @@
 package com.order.system.stock.service.data.mapper;
 
-import com.order.system.common.data.restaurant.entity.RestaurantEntity;
-import com.order.system.common.data.restaurant.exception.RestaurantDataAccessException;
+import com.order.system.common.data.restaurant.entity.StockEntity;
+import com.order.system.common.data.restaurant.exception.StockDataAccessException;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.OrderId;
 import com.order.system.domain.valueobject.ProductId;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 import com.order.system.stock.service.data.entity.OrderApprovalEntity;
 import com.order.system.stock.service.domain.entity.OrderApproval;
 import com.order.system.stock.service.domain.entity.OrderDetail;
 import com.order.system.stock.service.domain.entity.Product;
-import com.order.system.stock.service.domain.entity.Restaurant;
+import com.order.system.stock.service.domain.entity.Stock;
 import com.order.system.stock.service.domain.valueobject.OrderApprovalId;
 import org.springframework.stereotype.Component;
 
@@ -21,16 +21,16 @@ import java.util.stream.Collectors;
 @Component
 public class RestaurantDataAccessMapper {
 
-    public List<UUID> restaurantToRestaurantProducts(Restaurant restaurant) {
+    public List<UUID> restaurantToRestaurantProducts(Stock restaurant) {
         return restaurant.getOrderDetail().getProducts().stream()
                 .map(product -> product.getId().getValue())
                 .collect(Collectors.toList());
     }
 
-    public Restaurant restaurantEntityToRestaurant(List<RestaurantEntity> restaurantEntities) {
-        RestaurantEntity restaurantEntity =
+    public Stock restaurantEntityToRestaurant(List<StockEntity> restaurantEntities) {
+        StockEntity stockEntity =
                 restaurantEntities.stream().findFirst().orElseThrow(() ->
-                        new RestaurantDataAccessException("No restaurants found!"));
+                        new StockDataAccessException("No restaurants found!"));
 
         List<Product> restaurantProducts = restaurantEntities.stream().map(entity ->
                         Product.builder()
@@ -41,19 +41,19 @@ public class RestaurantDataAccessMapper {
                                 .build())
                 .collect(Collectors.toList());
 
-        return Restaurant.builder()
-                .restaurantId(new RestaurantId(restaurantEntity.getRestaurantId()))
+        return Stock.builder()
+                .stockId(new StockId(stockEntity.getStockId()))
                 .orderDetail(OrderDetail.builder()
                         .products(restaurantProducts)
                         .build())
-                .active(restaurantEntity.getRestaurantActive())
+                .active(stockEntity.getStockActive())
                 .build();
     }
 
     public OrderApprovalEntity orderApprovalToOrderApprovalEntity(OrderApproval orderApproval) {
         return OrderApprovalEntity.builder()
                 .id(orderApproval.getId().getValue())
-                .restaurantId(orderApproval.getRestaurantId().getValue())
+                .stockId(orderApproval.getStockId().getValue())
                 .orderId(orderApproval.getOrderId().getValue())
                 .status(orderApproval.getApprovalStatus())
                 .build();
@@ -62,7 +62,7 @@ public class RestaurantDataAccessMapper {
     public OrderApproval orderApprovalEntityToOrderApproval(OrderApprovalEntity orderApprovalEntity) {
         return OrderApproval.builder()
                 .orderApprovalId(new OrderApprovalId(orderApprovalEntity.getId()))
-                .restaurantId(new RestaurantId(orderApprovalEntity.getRestaurantId()))
+                .stockId(new StockId(orderApprovalEntity.getStockId()))
                 .orderId(new OrderId(orderApprovalEntity.getOrderId()))
                 .approvalStatus(orderApprovalEntity.getStatus())
                 .build();

@@ -48,7 +48,7 @@ public class OrderMessagingDataMapper {
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
                 .setOrderId(order.getId().getValue().toString())
-                .setRestaurantId(order.getRestaurantId().getValue().toString())
+                .setStockId(order.getStockId().getValue().toString())
                 .setOrderId(order.getId().getValue().toString())
                 .setRestaurantOrderStatus(com.order.system.kafka.order.avro.model.RestaurantOrderStatus
                         .valueOf(order.getOrderStatus().name()))
@@ -85,7 +85,7 @@ public class OrderMessagingDataMapper {
         return RestaurantApprovalResponse.builder()
                 .id(restaurantApprovalResponseAvroModel.getId())
                 .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
-                .restaurantId(restaurantApprovalResponseAvroModel.getRestaurantId())
+                .stockId(restaurantApprovalResponseAvroModel.getStockId())
                 .orderId(restaurantApprovalResponseAvroModel.getOrderId())
                 .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
                 .orderApprovalStatus(com.order.system.domain.valueobject.OrderApprovalStatus.valueOf(

@@ -13,21 +13,21 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantEntityId implements Serializable {
+public class StockEntityId implements Serializable {
 
-    private UUID restaurantId;
+    private UUID stockId;
     private UUID productId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RestaurantEntityId that = (RestaurantEntityId) o;
-        return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
+        StockEntityId that = (StockEntityId) o;
+        return stockId.equals(that.stockId) && productId.equals(that.productId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(restaurantId, productId);
+        return Objects.hash(stockId, productId);
     }
 }

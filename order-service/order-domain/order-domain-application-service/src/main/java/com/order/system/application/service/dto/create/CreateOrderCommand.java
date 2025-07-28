@@ -14,7 +14,7 @@ public class CreateOrderCommand {
     
     private final UUID customerId;
     
-    private final UUID restaurantId;
+    private final UUID stockId;
     
     private final BigDecimal price;
     
@@ -22,9 +22,9 @@ public class CreateOrderCommand {
     
     private final OrderAddress address;
 
-    public CreateOrderCommand(UUID customerId, UUID restaurantId, BigDecimal price, List<OrderItem> items, OrderAddress address) {
+    public CreateOrderCommand(UUID customerId, UUID stockId, BigDecimal price, List<OrderItem> items, OrderAddress address) {
         this.customerId = customerId;
-        this.restaurantId = restaurantId;
+        this.stockId = stockId;
         this.price = price;
         this.items = items;
         this.address = address;
@@ -34,8 +34,8 @@ public class CreateOrderCommand {
         return customerId;
     }
 
-    public UUID getRestaurantId() {
-        return restaurantId;
+    public UUID getStockId() {
+        return stockId;
     }
 
     public BigDecimal getPrice() {

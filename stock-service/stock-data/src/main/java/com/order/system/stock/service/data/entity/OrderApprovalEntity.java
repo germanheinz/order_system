@@ -11,13 +11,13 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_approval", schema = "restaurant")
+@Table(name = "order_approval", schema = "stock")
 @Entity
 public class OrderApprovalEntity {
 
     @Id
     private UUID id;
-    private UUID restaurantId;
+    private UUID stockId;
     private UUID orderId;
     @Enumerated(EnumType.STRING)
     private OrderApprovalStatus status;

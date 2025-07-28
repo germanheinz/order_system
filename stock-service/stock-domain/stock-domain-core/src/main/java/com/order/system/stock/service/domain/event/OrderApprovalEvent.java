@@ -2,23 +2,23 @@ package com.order.system.stock.service.domain.event;
 
 import com.order.system.stock.service.domain.entity.OrderApproval;
 import com.order.system.domain.event.DomainEvent;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
 public abstract class OrderApprovalEvent implements DomainEvent<OrderApproval> {
     private final OrderApproval orderApproval;
-    private final RestaurantId restaurantId;
+    private final StockId stockId;
     private final List<String> failureMessages;
     private final ZonedDateTime createdAt;
 
     public OrderApprovalEvent(OrderApproval orderApproval,
-                              RestaurantId restaurantId,
+                              StockId stockId,
                               List<String> failureMessages,
                               ZonedDateTime createdAt) {
         this.orderApproval = orderApproval;
-        this.restaurantId = restaurantId;
+        this.stockId = stockId;
         this.failureMessages = failureMessages;
         this.createdAt = createdAt;
     }
@@ -27,8 +27,8 @@ public abstract class OrderApprovalEvent implements DomainEvent<OrderApproval> {
         return orderApproval;
     }
 
-    public RestaurantId getRestaurantId() {
-        return restaurantId;
+    public StockId getStockId() {
+        return stockId;
     }
 
     public List<String> getFailureMessages() {

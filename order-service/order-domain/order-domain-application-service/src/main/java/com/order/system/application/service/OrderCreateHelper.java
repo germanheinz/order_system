@@ -5,16 +5,16 @@ import com.order.system.application.service.mapper.OrderDataMapper;
 import com.order.system.application.service.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.order.system.application.service.ports.output.repository.CustomerRepository;
 import com.order.system.application.service.ports.output.repository.OrderRepository;
-import com.order.system.application.service.ports.output.repository.RestaurantRepository;
+import com.order.system.application.service.ports.output.repository.StockRepository;
 import com.order.system.domain.core.OrderDomainService;
 import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.entity.Product;
-import com.order.system.domain.core.entity.Restaurant;
+import com.order.system.domain.core.entity.Stock;
 import com.order.system.domain.core.event.OrderCreatedEvent;
 import com.order.system.domain.core.exception.OrderDomainException;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.ProductId;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +34,7 @@ public class OrderCreateHelper {
 
     private final CustomerRepository customerRepository;
 
-    private final RestaurantRepository restaurantRepository;
+    private final StockRepository stockRepository;
 
     private final OrderDataMapper orderDataMapper;
 
@@ -44,7 +44,7 @@ public class OrderCreateHelper {
                              OrderDomainService orderDomainService,
                              OrderRepository orderRepository,
                              OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher,
-                             RestaurantRepository restaurantRepository,
+                             StockRepository stockRepository,
                              CustomerRepository customerRepository,
                              OrderDataMapper orderDataMapper
     ) {
@@ -52,41 +52,52 @@ public class OrderCreateHelper {
         this.orderRepository = orderRepository;
         this.orderCreatedEventDomainEventPublisher = orderCreatedEventDomainEventPublisher;
         this.customerRepository = customerRepository;
-        this.restaurantRepository = restaurantRepository;
+        this.stockRepository = stockRepository;
         this.orderDataMapper = orderDataMapper;
     }
 
     @Transactional
     public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
 //        checkCustomer(createOrderCommand.getCustomerId());
-        Restaurant restaurant = checkRestaurant(createOrderCommand);
+        Stock stock = checkRestaurant(createOrderCommand);
         Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
-        OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant, orderCreatedEventDomainEventPublisher);
+        OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, stock, orderCreatedEventDomainEventPublisher);
         saveOrder(order);
         log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
         return orderCreatedEvent;
     }
 
-    private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
-        Restaurant restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
-//        Optional<Restaurant> optionalRestaurant = restaurantRepository.findRestaurantInformation(restaurant);
-
-        Restaurant restaurant1 = Restaurant.builder()
-                .restaurantId(new RestaurantId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb45")))
-                .products(Arrays.asList(
-                        new Product(new ProductId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb48")), "Pizza", new Money(BigDecimal.valueOf(10.99))),
-                        new Product(new ProductId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb48")), "Burger", new Money(BigDecimal.valueOf(8.49)))
-                ))
-                .active(true)
-                .build();
-
-//        if (optionalRestaurant.isEmpty()) {
-//            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getRestaurantId());
-//            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
-//                    createOrderCommand.getRestaurantId());
-//        }
-        return restaurant1;
+    private Stock checkRestaurant(CreateOrderCommand createOrderCommand) {
+        Stock restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
+        Optional<Stock> optionalRestaurant = stockRepository.findStockInformation(restaurant);
+        if (optionalRestaurant.isEmpty()) {
+            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getStockId());
+            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
+                    createOrderCommand.getStockId());
+        }
+        return optionalRestaurant.get();
     }
+
+//    private Stock checkRestaurant(CreateOrderCommand createOrderCommand) {
+//        Stock stock = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
+//        Optional<Stock> optionalRestaurant = stockRepository.findStockInformation(stock);
+//
+//        Stock stock1 = Stock.builder()
+//                .stockId(new StockId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb45")))
+//                .products(Arrays.asList(
+//                        new Product(new ProductId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb48")), "Pizza", new Money(BigDecimal.valueOf(10.99))),
+//                        new Product(new ProductId(UUID.fromString("d215b5f8-0249-4dc5-89a3-51fd148cfb48")), "Burger", new Money(BigDecimal.valueOf(8.49)))
+//                ))
+//                .active(true)
+//                .build();
+//
+//        if (optionalRestaurant.isEmpty()) {
+//            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getStockId());
+//            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
+//                    createOrderCommand.getStockId());
+//        }
+//        return stock1;
+//    }
 
 //    private void checkCustomer(UUID customerId) {
 //        Optional<Customer> customer = customerRepository.findCustomer(customerId);

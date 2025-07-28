@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static com.order.system.domain.core.entity.Order.FAILURE_MESSAGE_DELIMITER;
@@ -31,7 +30,7 @@ public class OrderDataAccessMapper {
             OrderEntity orderEntity = OrderEntity.builder()
                     .id(order.getId().getValue())
                     .customerId(order.getCustomerId().getValue())
-                    .restaurantId(order.getRestaurantId().getValue())
+                    .stockId(order.getStockId().getValue())
                     .trackingId(order.getTrackingId().getValue())
                     .address(deliveryAddressToAddressEntity(order.getDeliveryAddress()))
                     .price(order.getPrice().getAmount())
@@ -50,7 +49,7 @@ public class OrderDataAccessMapper {
             return Order.builder()
                     .orderId(new OrderId(orderEntity.getId()))
                     .customerId(new CustomerId(orderEntity.getCustomerId()))
-                    .restaurantId(new RestaurantId(orderEntity.getRestaurantId()))
+                    .stockId(new StockId(orderEntity.getStockId()))
                     .deliveryAddress(addressEntityToDeliveryAddress(orderEntity.getAddress()))
                     .price(new Money(orderEntity.getPrice()))
                     .items(orderItemEntitiesToOrderItems(orderEntity.getItems()))

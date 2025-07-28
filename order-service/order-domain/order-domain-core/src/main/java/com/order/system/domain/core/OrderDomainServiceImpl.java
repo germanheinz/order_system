@@ -3,7 +3,7 @@ package com.order.system.domain.core;
 
 import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.entity.Product;
-import com.order.system.domain.core.entity.Restaurant;
+import com.order.system.domain.core.entity.Stock;
 import com.order.system.domain.core.event.OrderCancelledEvent;
 import com.order.system.domain.core.event.OrderCreatedEvent;
 import com.order.system.domain.core.event.OrderPaidEvent;
@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.UUID;
 
 
 @Slf4j
@@ -23,9 +22,9 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     public static final String UTC = "UTC";
 
     @Override
-    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
-        validateRestaurant(restaurant);
-        setOrderProductInformation(order, restaurant);
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Stock stock, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
+        validateRestaurant(stock);
+        setOrderProductInformation(order, stock);
         order.validateOrder();
         order.initializeOrder();
         log.info("Order with id: {} is initiated", order.getId().getValue());
@@ -58,15 +57,15 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         log.info("Order with id: {} is cancelled", order.getId().getValue());
     }
 
-    private void validateRestaurant(Restaurant restaurant) {
-        if (!restaurant.isActive()) {
-            throw new OrderDomainException("Restaurant with id " + restaurant.getId().getValue() +
+    private void validateRestaurant(Stock stock) {
+        if (!stock.isActive()) {
+            throw new OrderDomainException("Restaurant with id " + stock.getId().getValue() +
                     " is currently not active!");
         }
     }
 
-    private void setOrderProductInformation(Order order, Restaurant restaurant) {
-        order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
+    private void setOrderProductInformation(Order order, Stock stock) {
+        order.getItems().forEach(orderItem -> stock.getProducts().forEach(restaurantProduct -> {
             Product currentProduct = orderItem.getProduct();
             if (currentProduct.equals(restaurantProduct)) {
                 currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(),

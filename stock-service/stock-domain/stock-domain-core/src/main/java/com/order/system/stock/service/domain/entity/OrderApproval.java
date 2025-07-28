@@ -4,16 +4,16 @@ import com.order.system.stock.service.domain.valueobject.OrderApprovalId;
 import com.order.system.domain.entity.BaseEntity;
 import com.order.system.domain.valueobject.OrderApprovalStatus;
 import com.order.system.domain.valueobject.OrderId;
-import com.order.system.domain.valueobject.RestaurantId;
+import com.order.system.domain.valueobject.StockId;
 
 public class OrderApproval extends BaseEntity<OrderApprovalId> {
-    private final RestaurantId restaurantId;
+    private final StockId stockId;
     private final OrderId orderId;
     private final OrderApprovalStatus approvalStatus;
 
     private OrderApproval(Builder builder) {
         setId(builder.orderApprovalId);
-        restaurantId = builder.restaurantId;
+        stockId = builder.stockId;
         orderId = builder.orderId;
         approvalStatus = builder.approvalStatus;
     }
@@ -23,8 +23,8 @@ public class OrderApproval extends BaseEntity<OrderApprovalId> {
     }
 
 
-    public RestaurantId getRestaurantId() {
-        return restaurantId;
+    public StockId getStockId() {
+        return stockId;
     }
 
     public OrderId getOrderId() {
@@ -37,7 +37,7 @@ public class OrderApproval extends BaseEntity<OrderApprovalId> {
 
     public static final class Builder {
         private OrderApprovalId orderApprovalId;
-        private RestaurantId restaurantId;
+        private StockId stockId;
         private OrderId orderId;
         private OrderApprovalStatus approvalStatus;
 
@@ -49,8 +49,8 @@ public class OrderApproval extends BaseEntity<OrderApprovalId> {
             return this;
         }
 
-        public Builder restaurantId(RestaurantId val) {
-            restaurantId = val;
+        public Builder stockId(StockId val) {
+            stockId = val;
             return this;
         }
 

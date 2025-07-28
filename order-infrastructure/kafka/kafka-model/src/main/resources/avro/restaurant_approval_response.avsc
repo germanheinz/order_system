@@ -18,7 +18,7 @@
             }
         },
         {
-            "name": "restaurantId",
+            "name": "stockId",
             "type": {
                 "type": "string",
                 "logicalType": "uuid"
