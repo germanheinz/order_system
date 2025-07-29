@@ -41,10 +41,10 @@ public class OrderMessagingDataMapper {
                 .build();
     }
 
-    public RestaurantApprovalRequestAvroModel
+    public StockApprovalRequestAvroModel
     orderPaidEventToRestaurantApprovalRequestAvroModel(OrderPaidEvent orderPaidEvent) {
         Order order = orderPaidEvent.getOrder();
-        return RestaurantApprovalRequestAvroModel.newBuilder()
+        return StockApprovalRequestAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
                 .setOrderId(order.getId().getValue().toString())
@@ -80,17 +80,17 @@ public class OrderMessagingDataMapper {
     }
 
     public StockApprovalResponse
-    approvalResponseAvroModelToApprovalResponse(RestaurantApprovalResponseAvroModel
-                                                        restaurantApprovalResponseAvroModel) {
+    approvalResponseAvroModelToApprovalResponse(StockApprovalResponseAvroModel
+                                                        stockApprovalResponseAvroModel) {
         return StockApprovalResponse.builder()
-                .id(restaurantApprovalResponseAvroModel.getId())
-                .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
-                .stockId(restaurantApprovalResponseAvroModel.getStockId())
-                .orderId(restaurantApprovalResponseAvroModel.getOrderId())
-                .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
+                .id(stockApprovalResponseAvroModel.getId())
+                .sagaId(stockApprovalResponseAvroModel.getSagaId())
+                .stockId(stockApprovalResponseAvroModel.getStockId())
+                .orderId(stockApprovalResponseAvroModel.getOrderId())
+                .createdAt(stockApprovalResponseAvroModel.getCreatedAt())
                 .orderApprovalStatus(com.order.system.domain.valueobject.OrderApprovalStatus.valueOf(
-                        restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
-                .failureMessages(restaurantApprovalResponseAvroModel.getFailureMessages())
+                        stockApprovalResponseAvroModel.getOrderApprovalStatus().name()))
+                .failureMessages(stockApprovalResponseAvroModel.getFailureMessages())
                 .build();
     }
 }

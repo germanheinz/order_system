@@ -1,7 +1,7 @@
 package com.order.system.stock.service.data.mapper;
 
-import com.order.system.common.data.restaurant.entity.StockEntity;
-import com.order.system.common.data.restaurant.exception.StockDataAccessException;
+import com.order.system.common.data.stock.entity.StockEntity;
+import com.order.system.common.data.stock.exception.StockDataAccessException;
 import com.order.system.domain.valueobject.Money;
 import com.order.system.domain.valueobject.OrderId;
 import com.order.system.domain.valueobject.ProductId;
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 @Component
 public class RestaurantDataAccessMapper {
 
-    public List<UUID> restaurantToRestaurantProducts(Stock restaurant) {
-        return restaurant.getOrderDetail().getProducts().stream()
+    public List<UUID> restaurantToRestaurantProducts(Stock stock) {
+        return stock.getOrderDetail().getProducts().stream()
                 .map(product -> product.getId().getValue())
                 .collect(Collectors.toList());
     }

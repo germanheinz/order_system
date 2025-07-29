@@ -4,8 +4,8 @@ package com.order.system.stock.service.messaging.mapper;
 import com.order.system.domain.valueobject.ProductId;
 import com.order.system.domain.valueobject.RestaurantOrderStatus;
 import com.order.system.kafka.order.avro.model.OrderApprovalStatus;
-import com.order.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
-import com.order.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
+import com.order.system.kafka.order.avro.model.StockApprovalRequestAvroModel;
+import com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel;
 import com.order.system.stock.service.domain.dto.RestaurantApprovalRequest;
 import com.order.system.stock.service.domain.entity.Product;
 import com.order.system.stock.service.domain.event.OrderApprovalEvent;
@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class RestaurantMessagingDataMapper {
-    public RestaurantApprovalResponseAvroModel
+    public StockApprovalResponseAvroModel
     orderApprovedEventToRestaurantApprovalResponseAvroModel(OrderApprovalEvent orderApprovedEvent) {
-        return RestaurantApprovalResponseAvroModel.newBuilder()
+        return StockApprovalResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
                 .setOrderId(orderApprovedEvent.getOrderApproval().getOrderId().getValue().toString())
@@ -31,9 +31,9 @@ public class RestaurantMessagingDataMapper {
                 .build();
     }
 
-    public RestaurantApprovalResponseAvroModel
+    public StockApprovalResponseAvroModel
     orderRejectedEventToRestaurantApprovalResponseAvroModel(OrderRejectedEvent orderRejectedEvent) {
-        return RestaurantApprovalResponseAvroModel.newBuilder()
+        return StockApprovalResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
                 .setOrderId(orderRejectedEvent.getOrderApproval().getOrderId().getValue().toString())
@@ -46,24 +46,24 @@ public class RestaurantMessagingDataMapper {
     }
 
     public RestaurantApprovalRequest
-    restaurantApprovalRequestAvroModelToRestaurantApproval(RestaurantApprovalRequestAvroModel
-                                                                   restaurantApprovalRequestAvroModel) {
+    restaurantApprovalRequestAvroModelToRestaurantApproval(StockApprovalRequestAvroModel
+                                                                   stockApprovalRequestAvroModel) {
         return RestaurantApprovalRequest.builder()
-                .id(restaurantApprovalRequestAvroModel.getId())
-                .sagaId(restaurantApprovalRequestAvroModel.getSagaId())
-                .stockId(restaurantApprovalRequestAvroModel.getStockId())
-                .orderId(restaurantApprovalRequestAvroModel.getOrderId())
-                .restaurantOrderStatus(RestaurantOrderStatus.valueOf(restaurantApprovalRequestAvroModel
+                .id(stockApprovalRequestAvroModel.getId())
+                .sagaId(stockApprovalRequestAvroModel.getSagaId())
+                .stockId(stockApprovalRequestAvroModel.getStockId())
+                .orderId(stockApprovalRequestAvroModel.getOrderId())
+                .restaurantOrderStatus(RestaurantOrderStatus.valueOf(stockApprovalRequestAvroModel
                         .getRestaurantOrderStatus().name()))
-                .products(restaurantApprovalRequestAvroModel.getProducts()
+                .products(stockApprovalRequestAvroModel.getProducts()
                         .stream().map(avroModel ->
                                 Product.builder()
                                         .productId(new ProductId(UUID.fromString(avroModel.getId())))
                                         .quantity(avroModel.getQuantity())
                                         .build())
                         .collect(Collectors.toList()))
-                .price(restaurantApprovalRequestAvroModel.getPrice())
-                .createdAt(restaurantApprovalRequestAvroModel.getCreatedAt())
+                .price(stockApprovalRequestAvroModel.getPrice())
+                .createdAt(stockApprovalRequestAvroModel.getCreatedAt())
                 .build();
     }
 }

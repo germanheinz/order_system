@@ -6,7 +6,7 @@
 
     <groupId>com.order.system</groupId>
     <artifactId>order-system</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${project.version}</version>
     <modules>
         <module>order-common</module>
         <module>order-infrastructure</module>
@@ -181,21 +181,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.order.system</groupId>-->
-<!--            <artifactId>kafka-producer</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.order.system</groupId>-->
-<!--            <artifactId>kafka-consumer</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.order.system</groupId>-->
-<!--            <artifactId>kafka-config-data</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>

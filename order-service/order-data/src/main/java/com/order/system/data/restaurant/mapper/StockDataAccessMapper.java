@@ -1,8 +1,8 @@
-package com.order.system.data.restaurant.mapper;
+package com.order.system.data.stock.mapper;
 
 
-import com.order.system.common.data.restaurant.entity.StockEntity;
-import com.order.system.common.data.restaurant.exception.StockDataAccessException;
+import com.order.system.common.data.stock.entity.StockEntity;
+import com.order.system.common.data.stock.exception.StockDataAccessException;
 import com.order.system.domain.core.entity.Product;
 import com.order.system.domain.core.entity.Stock;
 import com.order.system.domain.valueobject.Money;

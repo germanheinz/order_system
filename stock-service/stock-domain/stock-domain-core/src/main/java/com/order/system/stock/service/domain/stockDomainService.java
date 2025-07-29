@@ -8,9 +8,9 @@ import com.order.system.stock.service.domain.event.OrderRejectedEvent;
 
 import java.util.List;
 
-public interface RestaurantDomainService {
+public interface stockDomainService {
 
-    OrderApprovalEvent validateOrder(Stock restaurant,
+    OrderApprovalEvent validateOrder(Stock stock,
                                      List<String> failureMessages,
                                      DomainEventPublisher<OrderApprovedEvent> orderApprovedEventDomainEventPublisher,
                                      DomainEventPublisher<OrderRejectedEvent> orderRejectedEventDomainEventPublisher);

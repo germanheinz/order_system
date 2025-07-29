@@ -14,31 +14,31 @@ import java.util.List;
 
 
 @Slf4j
-public class RestaurantDomainServiceImpl implements RestaurantDomainService {
+public class stockDomainServiceImpl implements stockDomainService {
 
     @Override
-    public OrderApprovalEvent validateOrder(Stock restaurant,
+    public OrderApprovalEvent validateOrder(Stock stock,
                                             List<String> failureMessages,
                                             DomainEventPublisher<OrderApprovedEvent>
                                                     orderApprovedEventDomainEventPublisher,
                                             DomainEventPublisher<OrderRejectedEvent>
                                                     orderRejectedEventDomainEventPublisher) {
-        restaurant.validateOrder(failureMessages);
-//        log.("Validating order with id: {}", restaurant.getOrderDetail().getId().getValue());
+        stock.validateOrder(failureMessages);
+//        log.("Validating order with id: {}", stock.getOrderDetail().getId().getValue());
 
         if (failureMessages.isEmpty()) {
-            log.info("Order is approved for order id: {}", restaurant.getOrderDetail().getId().getValue());
-            restaurant.constructOrderApproval(OrderApprovalStatus.APPROVED);
-            return new OrderApprovedEvent(restaurant.getOrderApproval(),
-                    restaurant.getId(),
+            log.info("Order is approved for order id: {}", stock.getOrderDetail().getId().getValue());
+            stock.constructOrderApproval(OrderApprovalStatus.APPROVED);
+            return new OrderApprovedEvent(stock.getOrderApproval(),
+                    stock.getId(),
                     failureMessages,
                     ZonedDateTime.now(ZoneId.of("UTC")),
                     orderApprovedEventDomainEventPublisher);
         } else {
-            log.info("Order is rejected for order id: {}", restaurant.getOrderDetail().getId().getValue());
-            restaurant.constructOrderApproval(OrderApprovalStatus.REJECTED);
-            return new OrderRejectedEvent(restaurant.getOrderApproval(),
-                    restaurant.getId(),
+            log.info("Order is rejected for order id: {}", stock.getOrderDetail().getId().getValue());
+            stock.constructOrderApproval(OrderApprovalStatus.REJECTED);
+            return new OrderRejectedEvent(stock.getOrderApproval(),
+                    stock.getId(),
                     failureMessages,
                     ZonedDateTime.now(ZoneId.of("UTC")),
                     orderRejectedEventDomainEventPublisher);

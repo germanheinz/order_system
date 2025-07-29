@@ -1,4 +1,4 @@
-package com.order.system.common.data.restaurant.entity;
+package com.order.system.common.data.stock.entity;
 
 
 import jakarta.persistence.Entity;

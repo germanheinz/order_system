@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories(basePackages = { "com.order.system.data.order.repository",
                                         "com.order.system.data.customer.repository",
-                                        "com.order.system.data.restaurant.repository",
+                                        "com.order.system.data.stock.repository",
                                         "com.order.system.common.data" })
 @EntityScan(basePackages = { "com.order.system.domain",
                              "com.order.system.data","com.order.system"})

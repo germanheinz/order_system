@@ -1,7 +1,7 @@
 package com.order.system.stock.service.data.adapter;
 
-import com.order.system.common.data.restaurant.entity.StockEntity;
-import com.order.system.common.data.restaurant.repository.StockJpaRepository;
+import com.order.system.common.data.stock.entity.StockEntity;
+import com.order.system.common.data.stock.repository.StockJpaRepository;
 import com.order.system.stock.service.data.mapper.RestaurantDataAccessMapper;
 import com.order.system.stock.service.domain.entity.Stock;
 import com.order.system.stock.service.domain.ports.output.repository.RestaurantRepository;

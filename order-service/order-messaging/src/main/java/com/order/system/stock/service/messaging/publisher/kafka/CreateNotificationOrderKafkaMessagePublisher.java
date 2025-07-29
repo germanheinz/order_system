@@ -3,7 +3,7 @@ package com.order.system.stock.service.messaging.publisher.kafka;
 import com.order.system.application.service.config.OrderServiceConfigData;
 import com.order.system.application.service.ports.output.message.publisher.payment.OrderPaidRestaurantRequestMessagePublisher;
 import com.order.system.domain.core.event.OrderPaidEvent;
-import com.order.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import com.order.system.kafka.order.avro.model.StockApprovalRequestAvroModel;
 import com.order.system.kafka.producer.KafkaMessageHelper;
 import com.order.system.kafka.producer.service.KafkaProducer;
 import com.order.system.stock.service.messaging.mapper.OrderMessagingDataMapper;
@@ -16,12 +16,12 @@ public class CreateNotificationOrderKafkaMessagePublisher implements OrderPaidRe
 
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
-    private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
+    private final KafkaProducer<String, StockApprovalRequestAvroModel> kafkaProducer;
     private final KafkaMessageHelper orderKafkaMessageHelper;
 
     public CreateNotificationOrderKafkaMessagePublisher(OrderMessagingDataMapper orderMessagingDataMapper,
                                                         OrderServiceConfigData orderServiceConfigData,
-                                                        KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer,
+                                                        KafkaProducer<String, StockApprovalRequestAvroModel> kafkaProducer,
                                                         KafkaMessageHelper orderKafkaMessageHelper) {
         this.orderMessagingDataMapper = orderMessagingDataMapper;
         this.orderServiceConfigData = orderServiceConfigData;
@@ -35,15 +35,15 @@ public class CreateNotificationOrderKafkaMessagePublisher implements OrderPaidRe
         String orderId = domainEvent.getOrder().getId().getValue().toString();
 
         try {
-            RestaurantApprovalRequestAvroModel restaurantApprovalRequestAvroModel =
+            StockApprovalRequestAvroModel stockApprovalRequestAvroModel =
                     orderMessagingDataMapper.orderPaidEventToRestaurantApprovalRequestAvroModel(domainEvent);
 
             kafkaProducer.send(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
                     orderId,
-                    restaurantApprovalRequestAvroModel,
+                    stockApprovalRequestAvroModel,
                     orderKafkaMessageHelper
                             .getKafkaCallback(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
-                                    restaurantApprovalRequestAvroModel,
+                                    stockApprovalRequestAvroModel,
                                     orderId,
                                     "RestaurantApprovalRequestAvroModel"));
 

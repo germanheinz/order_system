@@ -1,4 +1,4 @@
-package com.order.system.common.data.restaurant.exception;
+package com.order.system.common.data.stock.exception;
 
 public class StockDataAccessException extends RuntimeException{
 

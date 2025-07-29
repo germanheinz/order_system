@@ -23,21 +23,21 @@ import java.util.UUID;
 @Component
 public class RestaurantApprovalRequestHelper {
 
-    private final RestaurantDomainService restaurantDomainService;
+    private final stockDomainService stockDomainService;
     private final RestaurantDataMapper restaurantDataMapper;
     private final RestaurantRepository restaurantRepository;
     private final OrderApprovalRepository orderApprovalRepository;
     private final OrderApprovedMessagePublisher orderApprovedMessagePublisher;
     private final OrderRejectedMessagePublisher orderRejectedMessagePublisher;
 
-    public RestaurantApprovalRequestHelper(RestaurantDomainService restaurantDomainService,
+    public RestaurantApprovalRequestHelper(stockDomainService stockDomainService,
                                            RestaurantDataMapper restaurantDataMapper,
                                            RestaurantRepository restaurantRepository,
                                            OrderApprovalRepository orderApprovalRepository,
                                            OrderApprovedMessagePublisher orderApprovedMessagePublisher,
                                            OrderRejectedMessagePublisher orderRejectedMessagePublisher
     ) {
-        this.restaurantDomainService = restaurantDomainService;
+        this.stockDomainService = stockDomainService;
         this.restaurantDataMapper = restaurantDataMapper;
         this.restaurantRepository = restaurantRepository;
         this.orderApprovalRepository = orderApprovalRepository;
@@ -47,11 +47,11 @@ public class RestaurantApprovalRequestHelper {
 
     @Transactional
     public OrderApprovalEvent persistOrderApproval(RestaurantApprovalRequest restaurantApprovalRequest) {
-        log.info("Processing restaurant approval for order id: {}", restaurantApprovalRequest.getOrderId());
+        log.info("Processing stock approval for order id: {}", restaurantApprovalRequest.getOrderId());
         List<String> failureMessages = new ArrayList<>();
         Stock stock = findRestaurant(restaurantApprovalRequest);
         OrderApprovalEvent orderApprovalEvent =
-                restaurantDomainService.validateOrder(
+                stockDomainService.validateOrder(
                         stock,
                         failureMessages,
                         orderApprovedMessagePublisher,
@@ -66,8 +66,8 @@ public class RestaurantApprovalRequestHelper {
                 .restaurantApprovalRequestToRestaurant(restaurantApprovalRequest);
         Optional<Stock> restaurantResult = restaurantRepository.findRestaurantInformation(stock);
         if (restaurantResult.isEmpty()) {
-            log.error("Restaurant with id " + stock.getId().getValue() + " not found!");
-            throw new RestaurantNotFoundException("Restaurant with id " + stock.getId().getValue() +
+            log.error("Stock with id " + stock.getId().getValue() + " not found!");
+            throw new RestaurantNotFoundException("Stock with id " + stock.getId().getValue() +
                     " not found!");
         }
 

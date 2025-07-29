@@ -3,7 +3,7 @@ package com.order.system.stock.service.messaging.listener.kafka;
 import com.order.system.application.service.ports.input.message.listener.payment.StockResponseMessageListener;
 import com.order.system.kafka.comsumer.KafkaConsumer;
 import com.order.system.kafka.order.avro.model.OrderApprovalStatus;
-import com.order.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
+import com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel;
 import com.order.system.stock.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -20,7 +20,7 @@ import static com.order.system.domain.core.entity.Order.FAILURE_MESSAGE_DELIMITE
 
 @Slf4j
 @Component
-public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<RestaurantApprovalResponseAvroModel> {
+public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<StockApprovalResponseAvroModel> {
 
     private final StockResponseMessageListener stockResponseMessageListener;
     private final OrderMessagingDataMapper orderMessagingDataMapper;
@@ -33,13 +33,13 @@ public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<Re
     }
 
     @Override
-    @KafkaListener(id = "${kafka-consumer-config.restaurant-approval-consumer-group-id}",
-                topics = "${order-service.restaurant-approval-response-topic-name}")
-    public void receive(@Payload List<RestaurantApprovalResponseAvroModel> messages,
+    @KafkaListener(id = "${kafka-consumer-config.stock-approval-consumer-group-id}",
+                topics = "${order-service.stock-approval-response-topic-name}")
+    public void receive(@Payload List<StockApprovalResponseAvroModel> messages,
                         @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
-        log.info("{} number of restaurant approval responses received with keys {}, partitions {} and offsets {}",
+        log.info("{} number of stock approval responses received with keys {}, partitions {} and offsets {}",
                 messages.size(),
                 keys.toString(),
                 partitions.toString(),

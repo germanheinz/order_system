@@ -1,7 +1,7 @@
-package com.order.system.common.data.restaurant.repository;
+package com.order.system.common.data.stock.repository;
 
-import com.order.system.common.data.restaurant.entity.StockEntity;
-import com.order.system.common.data.restaurant.entity.StockEntityId;
+import com.order.system.common.data.stock.entity.StockEntity;
+import com.order.system.common.data.stock.entity.StockEntityId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

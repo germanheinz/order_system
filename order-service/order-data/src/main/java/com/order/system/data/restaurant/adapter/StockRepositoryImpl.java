@@ -1,9 +1,9 @@
-package com.order.system.data.restaurant.adapter;
+package com.order.system.data.stock.adapter;
 
-import com.order.system.common.data.restaurant.entity.StockEntity;
-import com.order.system.common.data.restaurant.repository.StockJpaRepository;
+import com.order.system.common.data.stock.entity.StockEntity;
+import com.order.system.common.data.stock.repository.StockJpaRepository;
 import com.order.system.application.service.ports.output.repository.StockRepository;
-import com.order.system.data.restaurant.mapper.StockDataAccessMapper;
+import com.order.system.data.stock.mapper.StockDataAccessMapper;
 import com.order.system.domain.core.entity.Stock;
 import org.springframework.stereotype.Component;
 

@@ -68,11 +68,11 @@ public class OrderCreateHelper {
     }
 
     private Stock checkRestaurant(CreateOrderCommand createOrderCommand) {
-        Stock restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
-        Optional<Stock> optionalRestaurant = stockRepository.findStockInformation(restaurant);
+        Stock stock = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
+        Optional<Stock> optionalRestaurant = stockRepository.findStockInformation(stock);
         if (optionalRestaurant.isEmpty()) {
-            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getStockId());
-            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
+            log.warn("Could not find stock with stock id: {}", createOrderCommand.getStockId());
+            throw new OrderDomainException("Could not find stock with stock id: " +
                     createOrderCommand.getStockId());
         }
         return optionalRestaurant.get();
@@ -92,8 +92,8 @@ public class OrderCreateHelper {
 //                .build();
 //
 //        if (optionalRestaurant.isEmpty()) {
-//            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getStockId());
-//            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
+//            log.warn("Could not find stock with stock id: {}", createOrderCommand.getStockId());
+//            throw new OrderDomainException("Could not find stock with stock id: " +
 //                    createOrderCommand.getStockId());
 //        }
 //        return stock1;
