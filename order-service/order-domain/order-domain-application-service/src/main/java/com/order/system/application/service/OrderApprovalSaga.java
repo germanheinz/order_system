@@ -1,7 +1,7 @@
 package com.order.system.application.service;
 
 
-import com.order.system.application.service.dto.message.RestaurantApprovalResponse;
+import com.order.system.application.service.dto.message.StockApprovalResponse;
 import com.order.system.application.service.ports.output.message.publisher.payment.OrderCancelPaymentRequestMessagePublisher;
 import com.order.system.config.kafka.SagaStep;
 import com.order.system.domain.core.OrderDomainService;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
-public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, EmptyEvent, OrderCancelledEvent> {
+public class OrderApprovalSaga implements SagaStep<StockApprovalResponse, EmptyEvent, OrderCancelledEvent> {
 
     private final OrderDomainService orderDomainService;
     private final OrderSagaHelper orderSagaHelper;
@@ -29,9 +29,9 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, E
 
     @Override
     @Transactional
-    public EmptyEvent process(RestaurantApprovalResponse restaurantApprovalResponse) {
-        log.info("Approving order with id: {}", restaurantApprovalResponse.getOrderId());
-        Order order = orderSagaHelper.findOrder(restaurantApprovalResponse.getOrderId());
+    public EmptyEvent process(StockApprovalResponse stockApprovalResponse) {
+        log.info("Approving order with id: {}", stockApprovalResponse.getOrderId());
+        Order order = orderSagaHelper.findOrder(stockApprovalResponse.getOrderId());
         orderDomainService.approveOrder(order);
         orderSagaHelper.saveOrder(order);
         log.info("Order with id: {} is approved", order.getId().getValue());
@@ -40,11 +40,11 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, E
 
     @Override
     @Transactional
-    public OrderCancelledEvent rollback(RestaurantApprovalResponse restaurantApprovalResponse) {
-        log.info("Cancelling order with id: {}", restaurantApprovalResponse.getOrderId());
-        Order order = orderSagaHelper.findOrder(restaurantApprovalResponse.getOrderId());
+    public OrderCancelledEvent rollback(StockApprovalResponse stockApprovalResponse) {
+        log.info("Cancelling order with id: {}", stockApprovalResponse.getOrderId());
+        Order order = orderSagaHelper.findOrder(stockApprovalResponse.getOrderId());
         OrderCancelledEvent domainEvent = orderDomainService.cancelOrderPayment(order,
-                restaurantApprovalResponse.getFailureMessages(), orderCancelledPaymentRequestMessagePublisher);
+                stockApprovalResponse.getFailureMessages(), orderCancelledPaymentRequestMessagePublisher);
         orderSagaHelper.saveOrder(order);
         log.info("Order with id: {} is cancelling", order.getId().getValue());
         return domainEvent;

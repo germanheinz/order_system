@@ -1,7 +1,7 @@
 package com.order.system.stock.service.messaging.mapper;
 
 import com.order.system.application.service.dto.message.PaymentResponse;
-import com.order.system.application.service.dto.message.RestaurantApprovalResponse;
+import com.order.system.application.service.dto.message.StockApprovalResponse;
 import com.order.system.domain.core.entity.Order;
 import com.order.system.domain.core.event.OrderCancelledEvent;
 import com.order.system.domain.core.event.OrderCreatedEvent;
@@ -79,10 +79,10 @@ public class OrderMessagingDataMapper {
                 .build();
     }
 
-    public RestaurantApprovalResponse
+    public StockApprovalResponse
     approvalResponseAvroModelToApprovalResponse(RestaurantApprovalResponseAvroModel
                                                         restaurantApprovalResponseAvroModel) {
-        return RestaurantApprovalResponse.builder()
+        return StockApprovalResponse.builder()
                 .id(restaurantApprovalResponseAvroModel.getId())
                 .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
                 .stockId(restaurantApprovalResponseAvroModel.getStockId())
