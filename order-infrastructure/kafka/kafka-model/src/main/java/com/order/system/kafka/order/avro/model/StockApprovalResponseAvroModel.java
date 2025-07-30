@@ -5,17 +5,19 @@
  */
 package com.order.system.kafka.order.avro.model;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class StockApprovalResponseAvroModel extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3844371524636284615L;
+  private static final long serialVersionUID = 1210797120341196284L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RestaurantApprovalResponseAvroModel\",\"namespace\":\"com.order.system.kafka.order.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"sagaId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"stockId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"orderId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"createdAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"orderApprovalStatus\",\"type\":{\"type\":\"enum\",\"name\":\"OrderApprovalStatus\",\"symbols\":[\"APPROVED\",\"REJECTED\"]}},{\"name\":\"failureMessages\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"StockApprovalResponseAvroModel\",\"namespace\":\"com.order.system.kafka.order.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"sagaId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"stockId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"orderId\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"createdAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"orderApprovalStatus\",\"type\":{\"type\":\"enum\",\"name\":\"OrderApprovalStatus\",\"symbols\":[\"APPROVED\",\"REJECTED\"]}},{\"name\":\"failureMessages\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -55,7 +57,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
   }
 
   /**
-   * Serializes this RestaurantApprovalResponseAvroModel to a ByteBuffer.
+   * Serializes this StockApprovalResponseAvroModel to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -64,9 +66,9 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
   }
 
   /**
-   * Deserializes a RestaurantApprovalResponseAvroModel from a ByteBuffer.
+   * Deserializes a StockApprovalResponseAvroModel from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a RestaurantApprovalResponseAvroModel instance decoded from the given buffer
+   * @return a StockApprovalResponseAvroModel instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
   public static StockApprovalResponseAvroModel fromByteBuffer(
@@ -277,41 +279,41 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
   }
 
   /**
-   * Creates a new RestaurantApprovalResponseAvroModel RecordBuilder.
-   * @return A new RestaurantApprovalResponseAvroModel RecordBuilder
+   * Creates a new StockApprovalResponseAvroModel RecordBuilder.
+   * @return A new StockApprovalResponseAvroModel RecordBuilder
    */
-  public static StockApprovalResponseAvroModel.Builder newBuilder() {
-    return new StockApprovalResponseAvroModel.Builder();
+  public static com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder newBuilder() {
+    return new com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder();
   }
 
   /**
-   * Creates a new RestaurantApprovalResponseAvroModel RecordBuilder by copying an existing Builder.
+   * Creates a new StockApprovalResponseAvroModel RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new RestaurantApprovalResponseAvroModel RecordBuilder
+   * @return A new StockApprovalResponseAvroModel RecordBuilder
    */
-  public static StockApprovalResponseAvroModel.Builder newBuilder(StockApprovalResponseAvroModel.Builder other) {
+  public static com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder newBuilder(com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder other) {
     if (other == null) {
-      return new StockApprovalResponseAvroModel.Builder();
+      return new com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder();
     } else {
-      return new StockApprovalResponseAvroModel.Builder(other);
+      return new com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder(other);
     }
   }
 
   /**
-   * Creates a new RestaurantApprovalResponseAvroModel RecordBuilder by copying an existing RestaurantApprovalResponseAvroModel instance.
+   * Creates a new StockApprovalResponseAvroModel RecordBuilder by copying an existing StockApprovalResponseAvroModel instance.
    * @param other The existing instance to copy.
-   * @return A new RestaurantApprovalResponseAvroModel RecordBuilder
+   * @return A new StockApprovalResponseAvroModel RecordBuilder
    */
-  public static StockApprovalResponseAvroModel.Builder newBuilder(StockApprovalResponseAvroModel other) {
+  public static com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder newBuilder(com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel other) {
     if (other == null) {
-      return new StockApprovalResponseAvroModel.Builder();
+      return new com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder();
     } else {
-      return new StockApprovalResponseAvroModel.Builder(other);
+      return new com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for RestaurantApprovalResponseAvroModel instances.
+   * RecordBuilder for StockApprovalResponseAvroModel instances.
    */
   @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<StockApprovalResponseAvroModel>
@@ -334,7 +336,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(StockApprovalResponseAvroModel.Builder other) {
+    private Builder(com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -367,10 +369,10 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
     }
 
     /**
-     * Creates a Builder by copying an existing RestaurantApprovalResponseAvroModel instance
+     * Creates a Builder by copying an existing StockApprovalResponseAvroModel instance
      * @param other The existing instance to copy.
      */
-    private Builder(StockApprovalResponseAvroModel other) {
+    private Builder(com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -416,7 +418,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setId(java.lang.String value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setId(java.lang.String value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -436,7 +438,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearId() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -456,7 +458,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'sagaId'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setSagaId(java.lang.String value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setSagaId(java.lang.String value) {
       validate(fields()[1], value);
       this.sagaId = value;
       fieldSetFlags()[1] = true;
@@ -476,7 +478,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'sagaId' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearSagaId() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearSagaId() {
       sagaId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -496,7 +498,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'stockId'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setStockId(java.lang.String value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setStockId(java.lang.String value) {
       validate(fields()[2], value);
       this.stockId = value;
       fieldSetFlags()[2] = true;
@@ -516,7 +518,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'stockId' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearStockId() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearStockId() {
       stockId = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -536,7 +538,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'orderId'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setOrderId(java.lang.String value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setOrderId(java.lang.String value) {
       validate(fields()[3], value);
       this.orderId = value;
       fieldSetFlags()[3] = true;
@@ -556,7 +558,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'orderId' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearOrderId() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearOrderId() {
       orderId = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -576,7 +578,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'createdAt'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setCreatedAt(java.time.Instant value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setCreatedAt(java.time.Instant value) {
       validate(fields()[4], value);
       this.createdAt = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
       fieldSetFlags()[4] = true;
@@ -596,7 +598,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'createdAt' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearCreatedAt() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearCreatedAt() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -615,7 +617,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'orderApprovalStatus'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setOrderApprovalStatus(com.order.system.kafka.order.avro.model.OrderApprovalStatus value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setOrderApprovalStatus(com.order.system.kafka.order.avro.model.OrderApprovalStatus value) {
       validate(fields()[5], value);
       this.orderApprovalStatus = value;
       fieldSetFlags()[5] = true;
@@ -635,7 +637,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'orderApprovalStatus' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearOrderApprovalStatus() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearOrderApprovalStatus() {
       orderApprovalStatus = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -655,7 +657,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * @param value The value of 'failureMessages'.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder setFailureMessages(java.util.List<java.lang.String> value) {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder setFailureMessages(java.util.List<java.lang.String> value) {
       validate(fields()[6], value);
       this.failureMessages = value;
       fieldSetFlags()[6] = true;
@@ -675,7 +677,7 @@ public class StockApprovalResponseAvroModel extends org.apache.avro.specific.Spe
       * Clears the value of the 'failureMessages' field.
       * @return This builder.
       */
-    public StockApprovalResponseAvroModel.Builder clearFailureMessages() {
+    public com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel.Builder clearFailureMessages() {
       failureMessages = null;
       fieldSetFlags()[6] = false;
       return this;

@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class RestaurantMessagingDataMapper {
+public class StockMessagingDataMapper {
     public StockApprovalResponseAvroModel
     orderApprovedEventToRestaurantApprovalResponseAvroModel(OrderApprovalEvent orderApprovedEvent) {
         return StockApprovalResponseAvroModel.newBuilder()
@@ -54,7 +54,7 @@ public class RestaurantMessagingDataMapper {
                 .stockId(stockApprovalRequestAvroModel.getStockId())
                 .orderId(stockApprovalRequestAvroModel.getOrderId())
                 .restaurantOrderStatus(RestaurantOrderStatus.valueOf(stockApprovalRequestAvroModel
-                        .getRestaurantOrderStatus().name()))
+                        .getStockOrderStatus().name()))
                 .products(stockApprovalRequestAvroModel.getProducts()
                         .stream().map(avroModel ->
                                 Product.builder()

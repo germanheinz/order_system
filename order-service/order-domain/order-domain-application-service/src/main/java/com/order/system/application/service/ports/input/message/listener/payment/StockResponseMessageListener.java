@@ -5,7 +5,7 @@ import com.order.system.application.service.dto.message.StockApprovalResponse;
 
 public interface StockResponseMessageListener {
 
-    void orderApproved(StockApprovalResponse stockAprovalResponse);
+    void orderApproved(StockApprovalResponse stockApprovalResponse);
 
-    void orderRejected(StockApprovalResponse stockAprovalResponse);
+    void orderRejected(StockApprovalResponse stockApprovalResponse);
 }

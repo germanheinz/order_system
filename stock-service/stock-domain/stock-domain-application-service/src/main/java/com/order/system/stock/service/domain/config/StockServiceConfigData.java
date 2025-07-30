@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "stock-service")
-public class RestaurantServiceConfigData {
-    private String restaurantApprovalRequestTopicName;
-    private String restaurantApprovalResponseTopicName;
+public class StockServiceConfigData {
+    private String stockApprovalRequestTopicName;
+    private String stockApprovalResponseTopicName;
 }

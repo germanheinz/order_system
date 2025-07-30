@@ -3,10 +3,10 @@ package com.order.system.stock.service.messaging.publisher.kafka;
 import com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel;
 import com.order.system.kafka.producer.KafkaMessageHelper;
 import com.order.system.kafka.producer.service.KafkaProducer;
-import com.order.system.stock.service.domain.config.RestaurantServiceConfigData;
+import com.order.system.stock.service.domain.config.StockServiceConfigData;
 import com.order.system.stock.service.domain.event.OrderRejectedEvent;
 import com.order.system.stock.service.domain.ports.output.message.publisher.OrderRejectedMessagePublisher;
-import com.order.system.stock.service.messaging.mapper.RestaurantMessagingDataMapper;
+import com.order.system.stock.service.messaging.mapper.StockMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -14,18 +14,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderRejectedKafkaMessagePublisher implements OrderRejectedMessagePublisher {
 
-    private final RestaurantMessagingDataMapper restaurantMessagingDataMapper;
+    private final StockMessagingDataMapper stockMessagingDataMapper;
     private final KafkaProducer<String, StockApprovalResponseAvroModel> kafkaProducer;
-    private final RestaurantServiceConfigData restaurantServiceConfigData;
+    private final StockServiceConfigData stockServiceConfigData;
     private final KafkaMessageHelper kafkaMessageHelper;
 
-    public OrderRejectedKafkaMessagePublisher(RestaurantMessagingDataMapper restaurantMessagingDataMapper,
+    public OrderRejectedKafkaMessagePublisher(StockMessagingDataMapper stockMessagingDataMapper,
                                               KafkaProducer<String, StockApprovalResponseAvroModel> kafkaProducer,
-                                              RestaurantServiceConfigData restaurantServiceConfigData,
+                                              StockServiceConfigData stockServiceConfigData,
                                               KafkaMessageHelper kafkaMessageHelper) {
-        this.restaurantMessagingDataMapper = restaurantMessagingDataMapper;
+        this.stockMessagingDataMapper = stockMessagingDataMapper;
         this.kafkaProducer = kafkaProducer;
-        this.restaurantServiceConfigData = restaurantServiceConfigData;
+        this.stockServiceConfigData = stockServiceConfigData;
         this.kafkaMessageHelper = kafkaMessageHelper;
     }
 
@@ -37,14 +37,14 @@ public class OrderRejectedKafkaMessagePublisher implements OrderRejectedMessageP
 
         try {
             StockApprovalResponseAvroModel stockApprovalResponseAvroModel =
-                    restaurantMessagingDataMapper
+                    stockMessagingDataMapper
                             .orderRejectedEventToRestaurantApprovalResponseAvroModel(orderRejectedEvent);
 
-            kafkaProducer.send(restaurantServiceConfigData.getRestaurantApprovalResponseTopicName(),
+            kafkaProducer.send(stockServiceConfigData.getStockApprovalResponseTopicName(),
                     orderId,
                     stockApprovalResponseAvroModel,
-                    kafkaMessageHelper.getKafkaCallback(restaurantServiceConfigData
-                                    .getRestaurantApprovalResponseTopicName(),
+                    kafkaMessageHelper.getKafkaCallback(stockServiceConfigData
+                                    .getStockApprovalResponseTopicName(),
                             stockApprovalResponseAvroModel,
                             orderId,
                             "RestaurantApprovalResponseAvroModel"));

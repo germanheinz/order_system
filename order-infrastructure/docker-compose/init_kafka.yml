@@ -10,16 +10,15 @@ services:
       echo -e 'Deleting kafka topics'
       kafka-topics --bootstrap-server kafka-broker-1:9092 --topic payment-request --delete --if-exists
       kafka-topics --bootstrap-server kafka-broker-1:9092 --topic payment-response --delete --if-exists
-
-      kafka-topics --bootstrap-server kafka-broker-1:9092 --topic notification-request --delete --if-exists
-      kafka-topics --bootstrap-server kafka-broker-1:9092 --topic notification-response --delete --if-exists
+      kafka-topics --bootstrap-server kafka-broker-1:9092 --topic stock-approval-request --delete --if-exists
+      kafka-topics --bootstrap-server kafka-broker-1:9092 --topic stock-approval-response --delete --if-exists
 
       echo -e 'Creating kafka topics'
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic payment-request --replication-factor 3 --partitions 3
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic payment-response --replication-factor 3 --partitions 3
-
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic stock-approval-request --replication-factor 3 --partitions 3
       kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic stock-approval-response --replication-factor 3 --partitions 3
+      kafka-topics --bootstrap-server kafka-broker-1:9092 --create --if-not-exists --topic customer --replication-factor 3 --partitions 3
 
 
       echo -e 'Successfully created the following topics:'

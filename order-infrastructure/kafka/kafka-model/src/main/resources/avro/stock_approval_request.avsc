@@ -1,7 +1,7 @@
 {
     "namespace": "com.order.system.kafka.order.avro.model",
     "type": "record",
-    "name": "RestaurantApprovalRequestAvroModel",
+    "name": "StockApprovalRequestAvroModel",
     "fields": [
         {
             "name": "id",
@@ -32,10 +32,10 @@
             }
         },
         {
-            "name": "restaurantOrderStatus",
+            "name": "stockOrderStatus",
             "type": {
                   "type": "enum",
-                  "name": "RestaurantOrderStatus",
+                  "name": "StockOrderStatus",
                   "symbols": ["PAID"]
             }
         },

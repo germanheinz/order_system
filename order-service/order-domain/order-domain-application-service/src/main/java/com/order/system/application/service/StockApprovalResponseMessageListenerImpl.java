@@ -12,11 +12,11 @@ import static com.order.system.domain.core.entity.Order.FAILURE_MESSAGE_DELIMITE
 @Slf4j
 @Validated
 @Service
-public class RestaurantApprovalResponseMessageListenerImpl implements StockResponseMessageListener {
+public class StockApprovalResponseMessageListenerImpl implements StockResponseMessageListener {
 
     private final OrderApprovalSaga orderApprovalSaga;
 
-    public RestaurantApprovalResponseMessageListenerImpl(OrderApprovalSaga orderApprovalSaga) {
+    public StockApprovalResponseMessageListenerImpl(OrderApprovalSaga orderApprovalSaga) {
         this.orderApprovalSaga = orderApprovalSaga;
     }
 

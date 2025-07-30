@@ -20,14 +20,14 @@ import static com.order.system.domain.core.entity.Order.FAILURE_MESSAGE_DELIMITE
 
 @Slf4j
 @Component
-public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<StockApprovalResponseAvroModel> {
+public class StockApprovalResponseKafkaListener implements KafkaConsumer<StockApprovalResponseAvroModel> {
 
     private final StockResponseMessageListener stockResponseMessageListener;
     private final OrderMessagingDataMapper orderMessagingDataMapper;
 
-    public RestaurantApprovalResponseKafkaListener(StockResponseMessageListener
+    public StockApprovalResponseKafkaListener(StockResponseMessageListener
                                                            stockResponseMessageListener,
-                                                   OrderMessagingDataMapper orderMessagingDataMapper) {
+                                              OrderMessagingDataMapper orderMessagingDataMapper) {
         this.stockResponseMessageListener = stockResponseMessageListener;
         this.orderMessagingDataMapper = orderMessagingDataMapper;
     }

@@ -2,17 +2,17 @@ package com.order.system.stock.service.domain;
 
 import com.order.system.stock.service.domain.dto.RestaurantApprovalRequest;
 import com.order.system.stock.service.domain.event.OrderApprovalEvent;
-import com.order.system.stock.service.domain.ports.input.message.listener.RestaurantApprovalRequestMessageListener;
+import com.order.system.stock.service.domain.ports.input.message.listener.StockApprovalRequestMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class RestaurantApprovalRequestMessageListenerImpl implements RestaurantApprovalRequestMessageListener {
+public class StockApprovalRequestMessageListenerImpl implements StockApprovalRequestMessageListener {
 
     private final RestaurantApprovalRequestHelper restaurantApprovalRequestHelper;
 
-    public RestaurantApprovalRequestMessageListenerImpl(RestaurantApprovalRequestHelper
+    public StockApprovalRequestMessageListenerImpl(RestaurantApprovalRequestHelper
                                                                 restaurantApprovalRequestHelper) {
         this.restaurantApprovalRequestHelper = restaurantApprovalRequestHelper;
     }

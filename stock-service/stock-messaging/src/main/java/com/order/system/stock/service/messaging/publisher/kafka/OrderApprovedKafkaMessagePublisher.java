@@ -3,10 +3,10 @@ package com.order.system.stock.service.messaging.publisher.kafka;
 import com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel;
 import com.order.system.kafka.producer.KafkaMessageHelper;
 import com.order.system.kafka.producer.service.KafkaProducer;
-import com.order.system.stock.service.domain.config.RestaurantServiceConfigData;
+import com.order.system.stock.service.domain.config.StockServiceConfigData;
 import com.order.system.stock.service.domain.event.OrderApprovedEvent;
 import com.order.system.stock.service.domain.ports.output.message.publisher.OrderApprovedMessagePublisher;
-import com.order.system.stock.service.messaging.mapper.RestaurantMessagingDataMapper;
+import com.order.system.stock.service.messaging.mapper.StockMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -14,18 +14,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderApprovedKafkaMessagePublisher implements OrderApprovedMessagePublisher {
 
-    private final RestaurantMessagingDataMapper restaurantMessagingDataMapper;
+    private final StockMessagingDataMapper stockMessagingDataMapper;
     private final KafkaProducer<String, StockApprovalResponseAvroModel> kafkaProducer;
-    private final RestaurantServiceConfigData restaurantServiceConfigData;
+    private final StockServiceConfigData stockServiceConfigData;
     private final KafkaMessageHelper kafkaMessageHelper;
 
-    public OrderApprovedKafkaMessagePublisher(RestaurantMessagingDataMapper restaurantMessagingDataMapper,
+    public OrderApprovedKafkaMessagePublisher(StockMessagingDataMapper stockMessagingDataMapper,
                                               KafkaProducer<String, StockApprovalResponseAvroModel> kafkaProducer,
-                                              RestaurantServiceConfigData restaurantServiceConfigData,
+                                              StockServiceConfigData stockServiceConfigData,
                                               KafkaMessageHelper kafkaMessageHelper) {
-        this.restaurantMessagingDataMapper = restaurantMessagingDataMapper;
+        this.stockMessagingDataMapper = stockMessagingDataMapper;
         this.kafkaProducer = kafkaProducer;
-        this.restaurantServiceConfigData = restaurantServiceConfigData;
+        this.stockServiceConfigData = stockServiceConfigData;
         this.kafkaMessageHelper = kafkaMessageHelper;
     }
 
@@ -37,21 +37,21 @@ public class OrderApprovedKafkaMessagePublisher implements OrderApprovedMessageP
 
         try {
             StockApprovalResponseAvroModel stockApprovalResponseAvroModel =
-                    restaurantMessagingDataMapper
+                    stockMessagingDataMapper
                             .orderApprovedEventToRestaurantApprovalResponseAvroModel(orderApprovedEvent);
 
-            kafkaProducer.send(restaurantServiceConfigData.getRestaurantApprovalResponseTopicName(),
+            kafkaProducer.send(stockServiceConfigData.getStockApprovalResponseTopicName(),
                     orderId,
                     stockApprovalResponseAvroModel,
-                    kafkaMessageHelper.getKafkaCallback(restaurantServiceConfigData
-                                    .getRestaurantApprovalResponseTopicName(),
+                    kafkaMessageHelper.getKafkaCallback(stockServiceConfigData
+                                    .getStockApprovalResponseTopicName(),
                             stockApprovalResponseAvroModel,
                             orderId,
-                            "RestaurantApprovalResponseAvroModel"));
+                            "StockApprovalResponseAvroModel"));
 
-            log.info("RestaurantApprovalResponseAvroModel sent to kafka at: {}", System.nanoTime());
+            log.info("StockApprovalResponseAvroModel sent to kafka at: {}", System.nanoTime());
         } catch (Exception e) {
-            log.error("Error while sending RestaurantApprovalResponseAvroModel message" +
+            log.error("Error while sending StockApprovalResponseAvroModel message" +
                     " to kafka with order id: {}, error: {}", orderId, e.getMessage());
         }
     }

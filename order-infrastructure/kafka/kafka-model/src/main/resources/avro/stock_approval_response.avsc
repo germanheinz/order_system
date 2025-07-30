@@ -1,7 +1,7 @@
 {
     "namespace": "com.order.system.kafka.order.avro.model",
     "type": "record",
-    "name": "RestaurantApprovalResponseAvroModel",
+    "name": "StockApprovalResponseAvroModel",
     "fields": [
         {
             "name": "id",

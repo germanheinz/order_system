@@ -2,8 +2,8 @@ package com.order.system.stock.service.messaging.listener.kafka;
 
 import com.order.system.kafka.comsumer.KafkaConsumer;
 import com.order.system.kafka.order.avro.model.StockApprovalRequestAvroModel;
-import com.order.system.stock.service.domain.ports.input.message.listener.RestaurantApprovalRequestMessageListener;
-import com.order.system.stock.service.messaging.mapper.RestaurantMessagingDataMapper;
+import com.order.system.stock.service.domain.ports.input.message.listener.StockApprovalRequestMessageListener;
+import com.order.system.stock.service.messaging.mapper.StockMessagingDataMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,17 +17,17 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class RestaurantApprovalRequestKafkaListener implements KafkaConsumer<StockApprovalRequestAvroModel> {
+public class StockApprovalRequestKafkaListener implements KafkaConsumer<StockApprovalRequestAvroModel> {
 
-    private final RestaurantApprovalRequestMessageListener restaurantApprovalRequestMessageListener;
-    private final RestaurantMessagingDataMapper restaurantMessagingDataMapper;
+    private final StockApprovalRequestMessageListener stockApprovalRequestMessageListener;
+    private final StockMessagingDataMapper stockMessagingDataMapper;
 
-    public RestaurantApprovalRequestKafkaListener(RestaurantApprovalRequestMessageListener
-                                                          restaurantApprovalRequestMessageListener,
-                                                  RestaurantMessagingDataMapper
-                                                          restaurantMessagingDataMapper) {
-        this.restaurantApprovalRequestMessageListener = restaurantApprovalRequestMessageListener;
-        this.restaurantMessagingDataMapper = restaurantMessagingDataMapper;
+    public StockApprovalRequestKafkaListener(StockApprovalRequestMessageListener
+                                                     stockApprovalRequestMessageListener,
+                                             StockMessagingDataMapper
+                                                     stockMessagingDataMapper) {
+        this.stockApprovalRequestMessageListener = stockApprovalRequestMessageListener;
+        this.stockMessagingDataMapper = stockMessagingDataMapper;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RestaurantApprovalRequestKafkaListener implements KafkaConsumer<Sto
 
         messages.forEach(restaurantApprovalRequestAvroModel -> {
             log.info("Processing order approval for order id: {}", restaurantApprovalRequestAvroModel.getOrderId());
-            restaurantApprovalRequestMessageListener.approveOrder(restaurantMessagingDataMapper.
+            stockApprovalRequestMessageListener.approveOrder(stockMessagingDataMapper.
                     restaurantApprovalRequestAvroModelToRestaurantApproval(restaurantApprovalRequestAvroModel));
         });
     }

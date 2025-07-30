@@ -50,7 +50,7 @@ public class OrderMessagingDataMapper {
                 .setOrderId(order.getId().getValue().toString())
                 .setStockId(order.getStockId().getValue().toString())
                 .setOrderId(order.getId().getValue().toString())
-                .setRestaurantOrderStatus(com.order.system.kafka.order.avro.model.RestaurantOrderStatus
+                .setStockOrderStatus(com.order.system.kafka.order.avro.model.StockOrderStatus
                         .valueOf(order.getOrderStatus().name()))
                 .setProducts(order.getItems().stream().map(orderItem ->
                         com.order.system.kafka.order.avro.model.Product.newBuilder()
@@ -59,7 +59,7 @@ public class OrderMessagingDataMapper {
                                 .build()).collect(Collectors.toList()))
                 .setPrice(order.getPrice().getAmount())
                 .setCreatedAt(orderPaidEvent.getCreatedAt().toInstant())
-                .setRestaurantOrderStatus(RestaurantOrderStatus.PAID)
+                .setStockOrderStatus(StockOrderStatus.PAID)
                 .build();
     }
 

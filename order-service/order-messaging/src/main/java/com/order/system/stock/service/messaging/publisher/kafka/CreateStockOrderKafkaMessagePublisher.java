@@ -12,17 +12,17 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CreateNotificationOrderKafkaMessagePublisher implements OrderPaidRestaurantRequestMessagePublisher {
+public class CreateStockOrderKafkaMessagePublisher implements OrderPaidRestaurantRequestMessagePublisher {
 
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaProducer<String, StockApprovalRequestAvroModel> kafkaProducer;
     private final KafkaMessageHelper orderKafkaMessageHelper;
 
-    public CreateNotificationOrderKafkaMessagePublisher(OrderMessagingDataMapper orderMessagingDataMapper,
-                                                        OrderServiceConfigData orderServiceConfigData,
-                                                        KafkaProducer<String, StockApprovalRequestAvroModel> kafkaProducer,
-                                                        KafkaMessageHelper orderKafkaMessageHelper) {
+    public CreateStockOrderKafkaMessagePublisher(OrderMessagingDataMapper orderMessagingDataMapper,
+                                                 OrderServiceConfigData orderServiceConfigData,
+                                                 KafkaProducer<String, StockApprovalRequestAvroModel> kafkaProducer,
+                                                 KafkaMessageHelper orderKafkaMessageHelper) {
         this.orderMessagingDataMapper = orderMessagingDataMapper;
         this.orderServiceConfigData = orderServiceConfigData;
         this.kafkaProducer = kafkaProducer;
@@ -38,14 +38,14 @@ public class CreateNotificationOrderKafkaMessagePublisher implements OrderPaidRe
             StockApprovalRequestAvroModel stockApprovalRequestAvroModel =
                     orderMessagingDataMapper.orderPaidEventToRestaurantApprovalRequestAvroModel(domainEvent);
 
-            kafkaProducer.send(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+            kafkaProducer.send(orderServiceConfigData.getStockApprovalRequestTopicName(),
                     orderId,
                     stockApprovalRequestAvroModel,
                     orderKafkaMessageHelper
-                            .getKafkaCallback(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+                            .getKafkaCallback(orderServiceConfigData.getStockApprovalRequestTopicName(),
                                     stockApprovalRequestAvroModel,
                                     orderId,
-                                    "RestaurantApprovalRequestAvroModel"));
+                                    "StockApprovalRequestAvroModel"));
 
             log.info("RestaurantApprovalRequestAvroModel sent to kafka for order id: {}", orderId);
         } catch (Exception e) {
