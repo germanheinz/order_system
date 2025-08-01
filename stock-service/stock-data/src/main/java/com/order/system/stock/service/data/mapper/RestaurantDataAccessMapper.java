@@ -30,7 +30,7 @@ public class RestaurantDataAccessMapper {
     public Stock restaurantEntityToRestaurant(List<StockEntity> restaurantEntities) {
         StockEntity stockEntity =
                 restaurantEntities.stream().findFirst().orElseThrow(() ->
-                        new StockDataAccessException("No restaurants found!"));
+                        new StockDataAccessException("No stocks found!"));
 
         List<Product> restaurantProducts = restaurantEntities.stream().map(entity ->
                         Product.builder()
