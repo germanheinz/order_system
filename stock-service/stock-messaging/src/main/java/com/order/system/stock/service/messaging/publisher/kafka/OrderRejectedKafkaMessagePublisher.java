@@ -38,7 +38,7 @@ public class OrderRejectedKafkaMessagePublisher implements OrderRejectedMessageP
         try {
             StockApprovalResponseAvroModel stockApprovalResponseAvroModel =
                     stockMessagingDataMapper
-                            .orderRejectedEventToRestaurantApprovalResponseAvroModel(orderRejectedEvent);
+                            .orderRejectedEventToStockApprovalResponseAvroModel(orderRejectedEvent);
 
             kafkaProducer.send(stockServiceConfigData.getStockApprovalResponseTopicName(),
                     orderId,
@@ -47,11 +47,11 @@ public class OrderRejectedKafkaMessagePublisher implements OrderRejectedMessageP
                                     .getStockApprovalResponseTopicName(),
                             stockApprovalResponseAvroModel,
                             orderId,
-                            "RestaurantApprovalResponseAvroModel"));
+                            "StockApprovalResponseAvroModel"));
 
-            log.info("RestaurantApprovalResponseAvroModel sent to kafka at: {}", System.nanoTime());
+            log.info("StockApprovalResponseAvroModel sent to kafka at: {}", System.nanoTime());
         } catch (Exception e) {
-            log.error("Error while sending RestaurantApprovalResponseAvroModel message" +
+            log.error("Error while sending StockApprovalResponseAvroModel message" +
                     " to kafka with order id: {}, error: {}", orderId, e.getMessage());
         }
     }

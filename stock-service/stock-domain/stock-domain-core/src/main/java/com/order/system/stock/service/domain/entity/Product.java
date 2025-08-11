@@ -36,6 +36,10 @@ public class Product extends BaseEntity<ProductId> {
         return price;
     }
 
+    public void setPrice(Money price) {
+        this.price = price;
+    }
+
     public int getQuantity() {
         return quantity;
     }

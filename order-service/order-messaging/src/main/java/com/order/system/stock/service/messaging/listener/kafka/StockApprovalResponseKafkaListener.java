@@ -45,19 +45,19 @@ public class StockApprovalResponseKafkaListener implements KafkaConsumer<StockAp
                 partitions.toString(),
                 offsets.toString());
 
-        messages.forEach(restaurantApprovalResponseAvroModel -> {
-            if (OrderApprovalStatus.APPROVED == restaurantApprovalResponseAvroModel.getOrderApprovalStatus()) {
+        messages.forEach(stockApprovalResponseAvroModel -> {
+            if (OrderApprovalStatus.APPROVED == stockApprovalResponseAvroModel.getOrderApprovalStatus()) {
                 log.info("Processing approved order for order id: {}",
-                        restaurantApprovalResponseAvroModel.getOrderId());
+                        stockApprovalResponseAvroModel.getOrderId());
                 stockResponseMessageListener.orderApproved(orderMessagingDataMapper
-                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
-            } else if (OrderApprovalStatus.REJECTED == restaurantApprovalResponseAvroModel.getOrderApprovalStatus()) {
+                        .approvalResponseAvroModelToApprovalResponse(stockApprovalResponseAvroModel));
+            } else if (OrderApprovalStatus.REJECTED == stockApprovalResponseAvroModel.getOrderApprovalStatus()) {
                 log.info("Processing rejected order for order id: {}, with failure messages: {}",
-                        restaurantApprovalResponseAvroModel.getOrderId(),
+                        stockApprovalResponseAvroModel.getOrderId(),
                         String.join(FAILURE_MESSAGE_DELIMITER,
-                                restaurantApprovalResponseAvroModel.getFailureMessages()));
+                                stockApprovalResponseAvroModel.getFailureMessages()));
                 stockResponseMessageListener.orderRejected(orderMessagingDataMapper
-                        .approvalResponseAvroModelToApprovalResponse(restaurantApprovalResponseAvroModel));
+                        .approvalResponseAvroModelToApprovalResponse(stockApprovalResponseAvroModel));
             }
         });
 

@@ -1,5 +1,5 @@
 package com.order.system.domain.valueobject;
 
-public enum RestaurantOrderStatus {
+public enum StockOrderStatus {
     PAID
 }

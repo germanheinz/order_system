@@ -8,21 +8,14 @@ import com.order.system.application.service.ports.output.repository.OrderReposit
 import com.order.system.application.service.ports.output.repository.StockRepository;
 import com.order.system.domain.core.OrderDomainService;
 import com.order.system.domain.core.entity.Order;
-import com.order.system.domain.core.entity.Product;
 import com.order.system.domain.core.entity.Stock;
 import com.order.system.domain.core.event.OrderCreatedEvent;
 import com.order.system.domain.core.exception.OrderDomainException;
-import com.order.system.domain.valueobject.Money;
-import com.order.system.domain.valueobject.ProductId;
-import com.order.system.domain.valueobject.StockId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @Component
@@ -59,7 +52,7 @@ public class OrderCreateHelper {
     @Transactional
     public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
 //        checkCustomer(createOrderCommand.getCustomerId());
-        Stock stock = checkRestaurant(createOrderCommand);
+        Stock stock = checkStock(createOrderCommand);
         Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, stock, orderCreatedEventDomainEventPublisher);
         saveOrder(order);
@@ -67,15 +60,15 @@ public class OrderCreateHelper {
         return orderCreatedEvent;
     }
 
-    private Stock checkRestaurant(CreateOrderCommand createOrderCommand) {
-        Stock stock = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
-        Optional<Stock> optionalRestaurant = stockRepository.findStockInformation(stock);
-        if (optionalRestaurant.isEmpty()) {
+    private Stock checkStock(CreateOrderCommand createOrderCommand) {
+        Stock stock = orderDataMapper.createOrderCommandToStock(createOrderCommand);
+        Optional<Stock> optionalStock = stockRepository.findStockInformation(stock);
+        if (optionalStock.isEmpty()) {
             log.warn("Could not find stock with stock id: {}", createOrderCommand.getStockId());
             throw new OrderDomainException("Could not find stock with stock id: " +
                     createOrderCommand.getStockId());
         }
-        return optionalRestaurant.get();
+        return optionalStock.get();
     }
 
 //    private Stock checkRestaurant(CreateOrderCommand createOrderCommand) {

@@ -30,6 +30,9 @@ public class Money {
     }
 
     public Money multiply(int multiplier) {
+        System.out.println(" ---------- {{{{{{ }}}}}}} ------ " + multiplier);
+        System.out.println(" ---------- {{{{{{ }}}}}}} ------ " + this.amount);
+
         return new Money(setScale(this.amount.multiply(new BigDecimal(multiplier))));
     }
 

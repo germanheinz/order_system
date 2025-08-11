@@ -25,6 +25,9 @@ public class Stock extends AggregateRoot<StockId> {
                failureMessages.add("Product with id: " + product.getId().getValue()
                        + " is not available");
            }
+           if(product.getPrice() == null){
+               product.setPrice(Money.ZERO);
+           }
            return product.getPrice().multiply(product.getQuantity());
        }).reduce(Money.ZERO, Money::add);
 

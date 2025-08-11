@@ -44,10 +44,10 @@ public class StockApprovalRequestKafkaListener implements KafkaConsumer<StockApp
                 partitions.toString(),
                 offsets.toString());
 
-        messages.forEach(restaurantApprovalRequestAvroModel -> {
-            log.info("Processing order approval for order id: {}", restaurantApprovalRequestAvroModel.getOrderId());
+        messages.forEach(stockApprovalRequestAvroModel -> {
+            log.info("Processing order approval for order id: {}", stockApprovalRequestAvroModel.getOrderId());
             stockApprovalRequestMessageListener.approveOrder(stockMessagingDataMapper.
-                    restaurantApprovalRequestAvroModelToRestaurantApproval(restaurantApprovalRequestAvroModel));
+                    stockApprovalRequestAvroModelToStockApproval(stockApprovalRequestAvroModel));
         });
     }
 

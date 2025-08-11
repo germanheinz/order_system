@@ -4,6 +4,6 @@ import com.order.system.stock.service.domain.entity.Stock;
 
 import java.util.Optional;
 
-public interface RestaurantRepository {
-    Optional<Stock> findRestaurantInformation(Stock stock);
+public interface StockRepository {
+    Optional<Stock> findStockInformation(Stock stock);
 }

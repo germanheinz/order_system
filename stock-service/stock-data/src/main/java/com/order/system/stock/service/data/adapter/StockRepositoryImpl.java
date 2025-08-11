@@ -1,10 +1,10 @@
-package com.order.system.data.stock.adapter;
+package com.order.system.stock.service.data.adapter;
 
 import com.order.system.common.data.stock.entity.StockEntity;
 import com.order.system.common.data.stock.repository.StockJpaRepository;
-import com.order.system.application.service.ports.output.repository.StockRepository;
-import com.order.system.data.stock.mapper.StockDataAccessMapper;
-import com.order.system.domain.core.entity.Stock;
+import com.order.system.stock.service.data.mapper.StockDataAccessMapper;
+import com.order.system.stock.service.domain.entity.Stock;
+import com.order.system.stock.service.domain.ports.output.repository.StockRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

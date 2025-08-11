@@ -1,6 +1,6 @@
 package com.order.system.stock.service.data.adapter;
 
-import com.order.system.stock.service.data.mapper.RestaurantDataAccessMapper;
+import com.order.system.stock.service.data.mapper.StockDataAccessMapper;
 import com.order.system.stock.service.data.repository.OrderApprovalJpaRepository;
 import com.order.system.stock.service.domain.entity.OrderApproval;
 import com.order.system.stock.service.domain.ports.output.repository.OrderApprovalRepository;
@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 public class OrderApprovalRepositoryImpl implements OrderApprovalRepository {
 
     private final OrderApprovalJpaRepository orderApprovalJpaRepository;
-    private final RestaurantDataAccessMapper restaurantDataAccessMapper;
+    private final StockDataAccessMapper stockDataAccessMapper;
 
     public OrderApprovalRepositoryImpl(OrderApprovalJpaRepository orderApprovalJpaRepository,
-                                       RestaurantDataAccessMapper restaurantDataAccessMapper) {
+                                       StockDataAccessMapper stockDataAccessMapper) {
         this.orderApprovalJpaRepository = orderApprovalJpaRepository;
-        this.restaurantDataAccessMapper = restaurantDataAccessMapper;
+        this.stockDataAccessMapper = stockDataAccessMapper;
     }
 
     @Override
     public OrderApproval save(OrderApproval orderApproval) {
-        return restaurantDataAccessMapper
+        return stockDataAccessMapper
                 .orderApprovalEntityToOrderApproval(orderApprovalJpaRepository
-                        .save(restaurantDataAccessMapper.orderApprovalToOrderApprovalEntity(orderApproval)));
+                        .save(stockDataAccessMapper.orderApprovalToOrderApprovalEntity(orderApproval)));
     }
 
 }

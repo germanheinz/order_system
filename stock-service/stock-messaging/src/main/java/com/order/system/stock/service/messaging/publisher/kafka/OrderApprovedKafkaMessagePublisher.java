@@ -38,7 +38,7 @@ public class OrderApprovedKafkaMessagePublisher implements OrderApprovedMessageP
         try {
             StockApprovalResponseAvroModel stockApprovalResponseAvroModel =
                     stockMessagingDataMapper
-                            .orderApprovedEventToRestaurantApprovalResponseAvroModel(orderApprovedEvent);
+                            .orderApprovedEventToStockApprovalResponseAvroModel(orderApprovedEvent);
 
             kafkaProducer.send(stockServiceConfigData.getStockApprovalResponseTopicName(),
                     orderId,

@@ -1,7 +1,7 @@
 package com.order.system.application.service;
 
 import com.order.system.application.service.dto.message.PaymentResponse;
-import com.order.system.application.service.ports.output.message.publisher.payment.OrderPaidRestaurantRequestMessagePublisher;
+import com.order.system.application.service.ports.output.message.publisher.payment.OrderPaidStockRequestMessagePublisher;
 import com.order.system.application.service.ports.output.repository.OrderRepository;
 import com.order.system.config.kafka.SagaStep;
 import com.order.system.domain.core.OrderDomainService;
@@ -24,16 +24,16 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse, com.order.sys
 
     private final OrderDomainService orderDomainService;
     private final OrderRepository orderRepository;
-    private final OrderPaidRestaurantRequestMessagePublisher orderPaidRestaurantRequestMessagePublisher;
+    private final OrderPaidStockRequestMessagePublisher orderPaidStockRequestMessagePublisher;
 
     public OrderPaymentSaga(OrderDomainService orderDomainService,
                             OrderRepository orderRepository,
                             @Qualifier("payOrderKafkaMessagePublisher")
-                            OrderPaidRestaurantRequestMessagePublisher orderPaidRestaurantRequestMessagePublisher
+                            OrderPaidStockRequestMessagePublisher orderPaidStockRequestMessagePublisher
                             ) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
-        this.orderPaidRestaurantRequestMessagePublisher = orderPaidRestaurantRequestMessagePublisher;
+        this.orderPaidStockRequestMessagePublisher = orderPaidStockRequestMessagePublisher;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse, com.order.sys
         log.info("Completing payment for order with id: {}", paymentResponse.getOrderId());
         Order order = findOrder(paymentResponse.getOrderId());
         // TODO FIX
-        OrderPaidEvent domainEvent = orderDomainService.payOrder(order, orderPaidRestaurantRequestMessagePublisher);
+        OrderPaidEvent domainEvent = orderDomainService.payOrder(order, orderPaidStockRequestMessagePublisher);
         orderRepository.save(order);
         log.info("Order with id: {} is paid", order.getId().getValue());
         return domainEvent;

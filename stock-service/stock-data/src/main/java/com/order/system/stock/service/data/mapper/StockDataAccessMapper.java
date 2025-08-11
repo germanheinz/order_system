@@ -19,20 +19,20 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class RestaurantDataAccessMapper {
+public class StockDataAccessMapper {
 
-    public List<UUID> restaurantToRestaurantProducts(Stock stock) {
+    public List<UUID> stockToStockProducts(Stock stock) {
         return stock.getOrderDetail().getProducts().stream()
                 .map(product -> product.getId().getValue())
                 .collect(Collectors.toList());
     }
 
-    public Stock restaurantEntityToRestaurant(List<StockEntity> restaurantEntities) {
+    public Stock stockEntityToStock(List<StockEntity> stockEntities) {
         StockEntity stockEntity =
-                restaurantEntities.stream().findFirst().orElseThrow(() ->
+                stockEntities.stream().findFirst().orElseThrow(() ->
                         new StockDataAccessException("No stocks found!"));
 
-        List<Product> restaurantProducts = restaurantEntities.stream().map(entity ->
+        List<Product> stockProducts = stockEntities.stream().map(entity ->
                         Product.builder()
                                 .productId(new ProductId(entity.getProductId()))
                                 .name(entity.getProductName())
@@ -44,7 +44,7 @@ public class RestaurantDataAccessMapper {
         return Stock.builder()
                 .stockId(new StockId(stockEntity.getStockId()))
                 .orderDetail(OrderDetail.builder()
-                        .products(restaurantProducts)
+                        .products(stockProducts)
                         .build())
                 .active(stockEntity.getStockActive())
                 .build();

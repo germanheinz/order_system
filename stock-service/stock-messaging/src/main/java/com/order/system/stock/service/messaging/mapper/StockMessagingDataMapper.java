@@ -2,11 +2,11 @@ package com.order.system.stock.service.messaging.mapper;
 
 
 import com.order.system.domain.valueobject.ProductId;
-import com.order.system.domain.valueobject.RestaurantOrderStatus;
+import com.order.system.domain.valueobject.StockOrderStatus;
 import com.order.system.kafka.order.avro.model.OrderApprovalStatus;
 import com.order.system.kafka.order.avro.model.StockApprovalRequestAvroModel;
 import com.order.system.kafka.order.avro.model.StockApprovalResponseAvroModel;
-import com.order.system.stock.service.domain.dto.RestaurantApprovalRequest;
+import com.order.system.stock.service.domain.dto.StockApprovalRequest;
 import com.order.system.stock.service.domain.entity.Product;
 import com.order.system.stock.service.domain.event.OrderApprovalEvent;
 import com.order.system.stock.service.domain.event.OrderRejectedEvent;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Component
 public class StockMessagingDataMapper {
     public StockApprovalResponseAvroModel
-    orderApprovedEventToRestaurantApprovalResponseAvroModel(OrderApprovalEvent orderApprovedEvent) {
+    orderApprovedEventToStockApprovalResponseAvroModel(OrderApprovalEvent orderApprovedEvent) {
         return StockApprovalResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
@@ -32,7 +32,7 @@ public class StockMessagingDataMapper {
     }
 
     public StockApprovalResponseAvroModel
-    orderRejectedEventToRestaurantApprovalResponseAvroModel(OrderRejectedEvent orderRejectedEvent) {
+    orderRejectedEventToStockApprovalResponseAvroModel(OrderRejectedEvent orderRejectedEvent) {
         return StockApprovalResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
@@ -45,15 +45,16 @@ public class StockMessagingDataMapper {
                 .build();
     }
 
-    public RestaurantApprovalRequest
-    restaurantApprovalRequestAvroModelToRestaurantApproval(StockApprovalRequestAvroModel
+    //TODO CAMBIAR POR STOCK
+    public StockApprovalRequest
+    stockApprovalRequestAvroModelToStockApproval(StockApprovalRequestAvroModel
                                                                    stockApprovalRequestAvroModel) {
-        return RestaurantApprovalRequest.builder()
+        return StockApprovalRequest.builder()
                 .id(stockApprovalRequestAvroModel.getId())
                 .sagaId(stockApprovalRequestAvroModel.getSagaId())
                 .stockId(stockApprovalRequestAvroModel.getStockId())
                 .orderId(stockApprovalRequestAvroModel.getOrderId())
-                .restaurantOrderStatus(RestaurantOrderStatus.valueOf(stockApprovalRequestAvroModel
+                .stockOrderStatus(StockOrderStatus.valueOf(stockApprovalRequestAvroModel
                         .getStockOrderStatus().name()))
                 .products(stockApprovalRequestAvroModel.getProducts()
                         .stream().map(avroModel ->

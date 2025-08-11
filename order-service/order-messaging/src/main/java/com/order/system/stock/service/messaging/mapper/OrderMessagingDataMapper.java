@@ -42,7 +42,7 @@ public class OrderMessagingDataMapper {
     }
 
     public StockApprovalRequestAvroModel
-    orderPaidEventToRestaurantApprovalRequestAvroModel(OrderPaidEvent orderPaidEvent) {
+    orderPaidEventToStockApprovalRequestAvroModel(OrderPaidEvent orderPaidEvent) {
         Order order = orderPaidEvent.getOrder();
         return StockApprovalRequestAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
