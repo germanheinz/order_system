@@ -1,4 +1,5 @@
 com\order\system\domain\core\valueobject\ProductId.class
+com\order\system\domain\core\entity\Stock$Builder.class
 com\order\system\domain\core\valueobject\StreetAddress.class
 com\order\system\domain\core\entity\OrderItem.class
 com\order\system\domain\core\event\OrderEvent.class
@@ -6,6 +7,7 @@ com\order\system\domain\core\event\OrderCreatedEvent.class
 com\order\system\domain\core\entity\Product.class
 com\order\system\domain\core\valueobject\TrackingId.class
 com\order\system\domain\core\entity\Order.class
+com\order\system\domain\core\entity\Stock.class
 com\order\system\domain\core\valueobject\OrderItemId.class
 com\order\system\domain\core\exception\OrderNotFoundException.class
 com\order\system\domain\core\entity\Order$Builder.class
@@ -13,8 +15,6 @@ com\order\system\domain\core\event\OrderPaidEvent.class
 com\order\system\domain\core\entity\OrderItem$Builder.class
 com\order\system\domain\core\OrderDomainServiceImpl.class
 com\order\system\domain\core\entity\Customer.class
-com\order\system\domain\core\entity\Restaurant.class
-com\order\system\domain\core\entity\Restaurant$Builder.class
 com\order\system\domain\core\OrderDomainService.class
 com\order\system\domain\core\event\OrderCancelledEvent.class
 com\order\system\domain\core\exception\OrderDomainException.class

@@ -1,1 +1,2 @@
+com\order\system\kafka\comsumer\config\KafkaConsumerConfig.class
 com\order\system\kafka\comsumer\KafkaConsumer.class

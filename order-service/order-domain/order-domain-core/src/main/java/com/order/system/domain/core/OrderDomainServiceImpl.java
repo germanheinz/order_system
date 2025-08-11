@@ -23,7 +23,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Stock stock, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
-        validateRestaurant(stock);
+        validateStock(stock);
         setOrderProductInformation(order, stock);
         order.validateOrder();
         order.initializeOrder();
@@ -57,7 +57,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         log.info("Order with id: {} is cancelled", order.getId().getValue());
     }
 
-    private void validateRestaurant(Stock stock) {
+    private void validateStock(Stock stock) {
         if (!stock.isActive()) {
             throw new OrderDomainException("Stock with id " + stock.getId().getValue() +
                     " is currently not active!");
@@ -65,11 +65,11 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     private void setOrderProductInformation(Order order, Stock stock) {
-        order.getItems().forEach(orderItem -> stock.getProducts().forEach(restaurantProduct -> {
+        order.getItems().forEach(orderItem -> stock.getProducts().forEach(stockProduct -> {
             Product currentProduct = orderItem.getProduct();
-            if (currentProduct.equals(restaurantProduct)) {
-                currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(),
-                        restaurantProduct.getPrice());
+            if (currentProduct.equals(stockProduct)) {
+                currentProduct.updateWithConfirmedNameAndPrice(stockProduct.getName(),
+                        stockProduct.getPrice());
             }
         }));
     }
